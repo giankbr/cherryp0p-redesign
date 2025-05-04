@@ -29,11 +29,16 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const [newsSubmenuOpen, setNewsSubmenuOpen] = useState(false);
   const [themeMenuOpen, setThemeMenuOpen] = useState(false);
   const pathname = usePathname();
   const { setTheme, theme } = useTheme() as { setTheme: (theme: string) => void; theme: string };
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Check if the current path is in the news section to auto-expand the submenu
   useEffect(() => {
@@ -42,8 +47,22 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     }
   }, [pathname]);
 
+  // Fixed isActive function to properly handle dashboard path
   const isActive = (path: string) => {
+    // Exact match for dashboard root
+    if (path === '/admin/dashboard') {
+      return pathname === '/admin/dashboard';
+    }
+    // Regular check for other paths
     return pathname === path || pathname?.startsWith(`${path}/`);
+  };
+
+  // Determine the theme icon to show
+  const renderThemeIcon = () => {
+    if (!mounted) return null;
+    if (theme === 'dark') return <Moon className="h-5 w-5" />;
+    else if (theme === 'light') return <Sun className="h-5 w-5" />;
+    else return <Laptop className="h-5 w-5" />;
   };
 
   const navItems = [
@@ -119,27 +138,43 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     },
   ];
 
+  // Toggle sidebar function
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+
   return (
     <div className="min-h-screen bg-background">
       {/* Mobile Sidebar Toggle */}
       <div className="lg:hidden fixed top-4 left-4 z-50">
-        <button onClick={() => setSidebarOpen(!sidebarOpen)} className="p-2 bg-accent/10 rounded-md">
-          {sidebarOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        <button onClick={() => setMobileOpen(!mobileOpen)} className="p-2 bg-accent/10 rounded-md">
+          {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
       </div>
 
       {/* Sidebar */}
       <aside
-        className={`fixed inset-y-0 left-0 z-40 w-64 bg-background border-r border-border transform transition-transform duration-300 ease-in-out lg:translate-x-0 ${
-          sidebarOpen ? 'translate-x-0' : '-translate-x-full'
-        }`}
+        className={`fixed inset-y-0 left-0 z-40 bg-background border-r border-border transform transition-all duration-300 ease-in-out ${
+          mobileOpen ? 'translate-x-0 w-64' : 'lg:translate-x-0 -translate-x-full'
+        } ${sidebarOpen ? 'lg:w-64' : 'lg:w-20'}`}
       >
         <div className="h-full flex flex-col">
-          {/* Logo */}
-          <div className="p-6 border-b border-border">
-            <Link href="/admin/dashboard" className="text-2xl font-bold">
-              CHERRYPOP
-            </Link>
+          {/* Logo with Collapsible Toggle */}
+          <div className="p-6 border-b border-border flex items-center justify-between">
+            {sidebarOpen ? (
+              <>
+                <Link href="/admin/dashboard" className="text-2xl font-bold truncate">
+                  CHERRYPOP
+                </Link>
+                <button onClick={toggleSidebar} className="lg:flex p-1.5 hover:bg-accent/10 rounded-md">
+                  <Menu className="h-4 w-4" />
+                </button>
+              </>
+            ) : (
+              <button onClick={toggleSidebar} className="p-1.5 hover:bg-accent/10 rounded-md mx-auto" title="Expand sidebar">
+                <Menu className="h-5 w-5" />
+              </button>
+            )}
           </div>
 
           {/* Navigation */}
@@ -154,11 +189,11 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                     >
                       <div className="flex items-center">
                         {item.icon}
-                        <span className="ml-3">{item.name}</span>
+                        {sidebarOpen && <span className="ml-3">{item.name}</span>}
                       </div>
-                      <ChevronDown className={`h-4 w-4 transition-transform ${newsSubmenuOpen ? 'rotate-180' : ''}`} />
+                      {sidebarOpen && <ChevronDown className={`h-4 w-4 transition-transform ${newsSubmenuOpen ? 'rotate-180' : ''}`} />}
                     </button>
-                    {newsSubmenuOpen && (
+                    {newsSubmenuOpen && sidebarOpen && (
                       <div className="pl-10 mt-1 space-y-1">
                         {item.submenu.map((subitem) => (
                           <Link key={subitem.name} href={subitem.href} className={`block p-2 rounded-md ${pathname === subitem.href ? 'bg-primary/20 text-primary' : 'hover:bg-accent/5'}`}>
@@ -169,9 +204,13 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                     )}
                   </div>
                 ) : (
-                  <Link href={item.href} className={`flex items-center p-3 rounded-md ${isActive(item.href) ? 'bg-primary text-primary-foreground' : 'hover:bg-accent/10'}`}>
+                  <Link
+                    href={item.href}
+                    className={`flex items-center p-3 rounded-md ${isActive(item.href) ? 'bg-primary text-primary-foreground' : 'hover:bg-accent/10'} ${!sidebarOpen ? 'justify-center' : ''}`}
+                    title={!sidebarOpen ? item.name : ''}
+                  >
                     {item.icon}
-                    <span className="ml-3">{item.name}</span>
+                    {sidebarOpen && <span className="ml-3">{item.name}</span>}
                   </Link>
                 )}
               </div>
@@ -180,61 +219,106 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
           {/* User & Logout */}
           <div className="p-4 border-t border-border">
-            <div className="flex items-center justify-between mb-4">
-              <div>
-                <p className="font-medium">Admin User</p>
-                <p className="text-sm text-muted-foreground">admin@cherrypop.id</p>
+            {sidebarOpen ? (
+              <div className="flex items-center justify-between mb-4">
+                <div>
+                  <p className="font-medium">Admin User</p>
+                  <p className="text-sm text-muted-foreground">admin@cherrypop.id</p>
+                </div>
+                <div className="relative">
+                  <button onClick={() => setThemeMenuOpen(!themeMenuOpen)} className="p-2 hover:bg-accent/10 rounded-md">
+                    {renderThemeIcon()}
+                  </button>
+                  {themeMenuOpen && (
+                    <div className="absolute bottom-full right-0 mb-2 w-36 bg-background border border-border rounded-md shadow-lg overflow-hidden">
+                      <button
+                        onClick={() => {
+                          setTheme('light');
+                          setThemeMenuOpen(false);
+                        }}
+                        className="flex items-center w-full p-2 hover:bg-accent/10"
+                      >
+                        <Sun className="h-4 w-4 mr-2" />
+                        <span>Light</span>
+                      </button>
+                      <button
+                        onClick={() => {
+                          setTheme('dark');
+                          setThemeMenuOpen(false);
+                        }}
+                        className="flex items-center w-full p-2 hover:bg-accent/10"
+                      >
+                        <Moon className="h-4 w-4 mr-2" />
+                        <span>Dark</span>
+                      </button>
+                      <button
+                        onClick={() => {
+                          setTheme('system');
+                          setThemeMenuOpen(false);
+                        }}
+                        className="flex items-center w-full p-2 hover:bg-accent/10"
+                      >
+                        <Laptop className="h-4 w-4 mr-2" />
+                        <span>System</span>
+                      </button>
+                    </div>
+                  )}
+                </div>
               </div>
-              <div className="relative">
-                <button onClick={() => setThemeMenuOpen(!themeMenuOpen)} className="p-2 hover:bg-accent/10 rounded-md">
-                  {theme === 'dark' ? <Moon className="h-5 w-5" /> : theme === 'light' ? <Sun className="h-5 w-5" /> : <Laptop className="h-5 w-5" />}
-                </button>
-                {themeMenuOpen && (
-                  <div className="absolute bottom-full right-0 mb-2 w-36 bg-background border border-border rounded-md shadow-lg overflow-hidden">
-                    <button
-                      onClick={() => {
-                        setTheme('light');
-                        setThemeMenuOpen(false);
-                      }}
-                      className="flex items-center w-full p-2 hover:bg-accent/10"
-                    >
-                      <Sun className="h-4 w-4 mr-2" />
-                      <span>Light</span>
-                    </button>
-                    <button
-                      onClick={() => {
-                        setTheme('dark');
-                        setThemeMenuOpen(false);
-                      }}
-                      className="flex items-center w-full p-2 hover:bg-accent/10"
-                    >
-                      <Moon className="h-4 w-4 mr-2" />
-                      <span>Dark</span>
-                    </button>
-                    <button
-                      onClick={() => {
-                        setTheme('system');
-                        setThemeMenuOpen(false);
-                      }}
-                      className="flex items-center w-full p-2 hover:bg-accent/10"
-                    >
-                      <Laptop className="h-4 w-4 mr-2" />
-                      <span>System</span>
-                    </button>
-                  </div>
-                )}
+            ) : (
+              <div className="flex justify-center mb-4">
+                <div className="relative">
+                  <button onClick={() => setThemeMenuOpen(!themeMenuOpen)} className="p-2 hover:bg-accent/10 rounded-md">
+                    {renderThemeIcon()}
+                  </button>
+                  {themeMenuOpen && (
+                    <div className="absolute bottom-full right-0 mb-2 w-36 bg-background border border-border rounded-md shadow-lg overflow-hidden">
+                      <button
+                        onClick={() => {
+                          setTheme('light');
+                          setThemeMenuOpen(false);
+                        }}
+                        className="flex items-center w-full p-2 hover:bg-accent/10"
+                      >
+                        <Sun className="h-4 w-4 mr-2" />
+                        <span>Light</span>
+                      </button>
+                      <button
+                        onClick={() => {
+                          setTheme('dark');
+                          setThemeMenuOpen(false);
+                        }}
+                        className="flex items-center w-full p-2 hover:bg-accent/10"
+                      >
+                        <Moon className="h-4 w-4 mr-2" />
+                        <span>Dark</span>
+                      </button>
+                      <button
+                        onClick={() => {
+                          setTheme('system');
+                          setThemeMenuOpen(false);
+                        }}
+                        className="flex items-center w-full p-2 hover:bg-accent/10"
+                      >
+                        <Laptop className="h-4 w-4 mr-2" />
+                        <span>System</span>
+                      </button>
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
-            <Link href="/admin/login" className="flex items-center p-3 rounded-md hover:bg-accent/10 w-full">
+            )}
+
+            <Link href="/admin/login" className={`flex items-center p-3 rounded-md hover:bg-accent/10 w-full ${!sidebarOpen ? 'justify-center' : ''}`} title={!sidebarOpen ? 'Logout' : ''}>
               <LogOut className="h-5 w-5" />
-              <span className="ml-3">Logout</span>
+              {sidebarOpen && <span className="ml-3">Logout</span>}
             </Link>
           </div>
         </div>
       </aside>
 
       {/* Main Content */}
-      <div className="lg:pl-64">
+      <div className={`transition-all duration-300 ${sidebarOpen ? 'lg:pl-64' : 'lg:pl-20'}`}>
         <main className="min-h-screen">{children}</main>
       </div>
     </div>
