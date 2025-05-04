@@ -1,8 +1,8 @@
-import { Header } from "@/components/header"
-import { MainGrid } from "@/components/main-grid"
-import { Footer } from "@/components/footer"
-import { Marquee } from "@/components/marquee"
-import { NewsGrid } from "@/components/news-grid"
+import { Footer } from '@/components/footer';
+import { Header } from '@/components/header';
+import { MainGrid } from '@/components/main-grid';
+import { Marquee } from '@/components/marquee';
+import { NewsGrid } from '@/components/news-grid';
 
 export default function Home() {
   return (
@@ -15,5 +15,5 @@ export default function Home() {
       </main>
       <Footer />
     </div>
-  )
+  );
 }

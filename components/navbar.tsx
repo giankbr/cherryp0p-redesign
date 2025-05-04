@@ -1,62 +1,51 @@
-"use client"
+'use client';
 
-import { useState, useEffect } from "react"
-import Link from "next/link"
-import Image from "next/image"
-import { Menu, X } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { ModeToggle } from "@/components/mode-toggle"
-import { cn } from "@/lib/utils"
-import gsap from "gsap"
+import { ModeToggle } from '@/components/mode-toggle';
+import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
+import gsap from 'gsap';
+import { Menu, X } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 export function Navbar() {
-  const [isOpen, setIsOpen] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10)
-    }
+      setIsScrolled(window.scrollY > 10);
+    };
 
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     gsap.fromTo(
-      ".nav-item",
+      '.nav-item',
       { y: -20, opacity: 0 },
       {
         y: 0,
         opacity: 1,
         stagger: 0.1,
         duration: 0.8,
-        ease: "power3.out",
+        ease: 'power3.out',
         delay: 0.2,
-      },
-    )
-  }, [])
+      }
+    );
+  }, []);
 
   return (
-    <nav
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled ? "bg-background/80 backdrop-blur-md border-b" : "bg-transparent",
-      )}
-    >
-      <div className="container mx-auto px-4 py-4">
+    <nav className={cn('sticky top-0 left-0 right-0 z-[100] transition-all duration-500', isScrolled ? 'bg-background/80 backdrop-blur-md border-b py-2 shadow-md' : 'bg-transparent py-6')}>
+      <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
           <Link href="/" className="nav-item flex items-center">
-            <div className="relative w-10 h-10 mr-2">
-              <Image
-                src="/placeholder.svg?height=40&width=40&text=CP"
-                alt="Cherrypop Logo"
-                width={40}
-                height={40}
-                className="rounded-full"
-              />
+            <div className={cn('relative transition-all duration-500 mr-3', isScrolled ? 'w-10 h-10' : 'w-16 h-16')}>
+              <Image src="/logo-cherrypop-official.png" alt="Cherrypop Logo" fill className="object-contain" />
             </div>
-            <h1 className="text-2xl font-bold gradient-text">CHERRYPOP</h1>
+            <h1 className={cn('font-bold gradient-text transition-all duration-500', isScrolled ? 'text-xl' : 'text-3xl')}>CHERRYPOP</h1>
           </Link>
 
           {/* Desktop Navigation */}
@@ -94,32 +83,20 @@ export function Navbar() {
 
         {/* Mobile Navigation Menu */}
         {isOpen && (
-          <div className="md:hidden pt-4 pb-6 space-y-4">
+          <div className="md:hidden pt-4 pb-6 space-y-4 bg-background/95 backdrop-blur-sm mt-2 rounded-lg px-4">
             <Link href="#about" className="block py-2 font-medium hover:text-primary" onClick={() => setIsOpen(false)}>
               About
             </Link>
-            <Link
-              href="#programs"
-              className="block py-2 font-medium hover:text-primary"
-              onClick={() => setIsOpen(false)}
-            >
+            <Link href="#programs" className="block py-2 font-medium hover:text-primary" onClick={() => setIsOpen(false)}>
               Programs
             </Link>
             <Link href="#lineup" className="block py-2 font-medium hover:text-primary" onClick={() => setIsOpen(false)}>
               Lineup
             </Link>
-            <Link
-              href="#gallery"
-              className="block py-2 font-medium hover:text-primary"
-              onClick={() => setIsOpen(false)}
-            >
+            <Link href="#gallery" className="block py-2 font-medium hover:text-primary" onClick={() => setIsOpen(false)}>
               Gallery
             </Link>
-            <Link
-              href="#articles"
-              className="block py-2 font-medium hover:text-primary"
-              onClick={() => setIsOpen(false)}
-            >
+            <Link href="#articles" className="block py-2 font-medium hover:text-primary" onClick={() => setIsOpen(false)}>
               Articles
             </Link>
             <div className="pt-4">
@@ -129,5 +106,5 @@ export function Navbar() {
         )}
       </div>
     </nav>
-  )
+  );
 }

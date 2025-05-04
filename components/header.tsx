@@ -1,38 +1,53 @@
-"use client"
+'use client';
 
-import { useState } from "react"
-import Link from "next/link"
-import { Menu, X } from "lucide-react"
-import { ModeToggle } from "@/components/mode-toggle"
+import { ModeToggle } from '@/components/mode-toggle';
+import { Menu, X } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
-export function Header() {
-  const [isOpen, setIsOpen] = useState(false)
+export interface HeaderProps {
+  logoSrc?: string;
+}
+
+export function Header({ logoSrc = '/logo-cherrypop-official.png' }: HeaderProps) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navItems = [
-    { label: "HOME", href: "/" },
-    { label: "ABOUT", href: "/about" },
-    { label: "LINEUP", href: "/lineup" },
-    { label: "MERCHANDISE", href: "/merchandise" },
-    { label: "NEWS", href: "/#news" },
-    { label: "CONTACT", href: "/contact" },
-  ]
+    { label: 'HOME', href: '/' },
+    { label: 'ABOUT', href: '/about' },
+    { label: 'LINEUP', href: '/lineup' },
+    { label: 'MERCHANDISE', href: '/merchandise' },
+    { label: 'NEWS', href: '/#news' },
+    { label: 'CONTACT', href: '/contact' },
+  ];
 
   return (
-    <header className="border-b border-border">
+    <header className={`sticky top-0 z-50 border-b border-border transition-all duration-300 ${scrolled ? 'bg-background/95 backdrop-blur-sm shadow-sm' : ''}`}>
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <Link href="/" className="text-2xl font-bold">
-            CHERRYPOP
+          <Link href="/" className="flex items-center">
+            <Image src={logoSrc} alt="Cherrypop Festival" width={240} height={80} className="h-16 w-auto" />
           </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-6">
             {navItems.map((item) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                className="text-sm font-medium hover:text-primary transition-colors nav-link"
-              >
+              <Link key={item.label} href={item.href} className="text-sm font-medium hover:text-primary transition-colors nav-link">
                 {item.label}
               </Link>
             ))}
@@ -51,21 +66,20 @@ export function Header() {
         </div>
 
         {/* Mobile Navigation Menu */}
-        {isOpen && (
-          <nav className="md:hidden py-4 space-y-4 border-t mt-4">
+        <div
+          className={`fixed inset-0 top-[76px] z-50 bg-background/95 backdrop-blur-sm transform transition-transform duration-300 ease-in-out md:hidden ${
+            isOpen ? 'translate-x-0' : 'translate-x-full'
+          }`}
+        >
+          <nav className="container mx-auto px-4 py-8 flex flex-col space-y-6">
             {navItems.map((item) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                className="block py-2 text-sm font-medium hover:text-primary"
-                onClick={() => setIsOpen(false)}
-              >
+              <Link key={item.label} href={item.href} className="block py-3 text-lg font-medium hover:text-primary border-b border-border/50" onClick={() => setIsOpen(false)}>
                 {item.label}
               </Link>
             ))}
           </nav>
-        )}
+        </div>
       </div>
     </header>
-  )
+  );
 }

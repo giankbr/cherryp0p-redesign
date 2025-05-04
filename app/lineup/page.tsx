@@ -1,99 +1,99 @@
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
-import { Marquee } from "@/components/marquee"
-import Image from "next/image"
+import { Footer } from '@/components/footer';
+import { Header } from '@/components/header';
+import { Marquee } from '@/components/marquee';
+import Image from 'next/image';
 
 export default function LineupPage() {
   const days = [
     {
-      date: "15",
-      month: "AUGUST",
-      year: "2025",
-      day: "FRIDAY",
+      date: '15',
+      month: 'AUGUST',
+      year: '2025',
+      day: 'FRIDAY',
       artists: [
         {
-          name: "HINDIA",
-          time: "21:30 - 23:00",
-          image: "/placeholder.svg?height=800&width=800",
-          type: "headliner",
+          name: 'HINDIA',
+          time: '21:30 - 23:00',
+          image: '/placeholder.svg?height=800&width=800',
+          type: 'headliner',
         },
         {
-          name: "BARASUARA",
-          time: "19:30 - 21:00",
-          image: "/placeholder.svg?height=600&width=600",
-          type: "main",
+          name: 'BARASUARA',
+          time: '19:30 - 21:00',
+          image: '/placeholder.svg?height=600&width=600',
+          type: 'main',
         },
         {
-          name: "KUNTO AJI",
-          time: "18:00 - 19:00",
-          image: "/placeholder.svg?height=600&width=600",
-          type: "main",
+          name: 'KUNTO AJI',
+          time: '18:00 - 19:00',
+          image: '/placeholder.svg?height=600&width=600',
+          type: 'main',
         },
         {
-          name: "REALITY CLUB",
-          time: "16:30 - 17:30",
-          image: "/placeholder.svg?height=400&width=400",
-          type: "supporting",
+          name: 'REALITY CLUB',
+          time: '16:30 - 17:30',
+          image: '/placeholder.svg?height=400&width=400',
+          type: 'supporting',
         },
         {
-          name: "FOURTWNTY",
-          time: "15:00 - 16:00",
-          image: "/placeholder.svg?height=400&width=400",
-          type: "supporting",
+          name: 'FOURTWNTY',
+          time: '15:00 - 16:00',
+          image: '/placeholder.svg?height=400&width=400',
+          type: 'supporting',
         },
         {
-          name: "FLOAT",
-          time: "13:30 - 14:30",
-          image: "/placeholder.svg?height=400&width=400",
-          type: "supporting",
+          name: 'FLOAT',
+          time: '13:30 - 14:30',
+          image: '/placeholder.svg?height=400&width=400',
+          type: 'supporting',
         },
       ],
     },
     {
-      date: "16",
-      month: "AUGUST",
-      year: "2025",
-      day: "SATURDAY",
+      date: '16',
+      month: 'AUGUST',
+      year: '2025',
+      day: 'SATURDAY',
       artists: [
         {
-          name: "EFEK RUMAH KACA",
-          time: "21:30 - 23:00",
-          image: "/placeholder.svg?height=800&width=800",
-          type: "headliner",
+          name: 'EFEK RUMAH KACA',
+          time: '21:30 - 23:00',
+          image: '/placeholder.svg?height=800&width=800',
+          type: 'headliner',
         },
         {
-          name: "ISYANA SARASVATI",
-          time: "19:30 - 21:00",
-          image: "/placeholder.svg?height=600&width=600",
-          type: "main",
+          name: 'ISYANA SARASVATI',
+          time: '19:30 - 21:00',
+          image: '/placeholder.svg?height=600&width=600',
+          type: 'main',
         },
         {
-          name: "LOMBA SIHIR",
-          time: "18:00 - 19:00",
-          image: "/placeholder.svg?height=600&width=600",
-          type: "main",
+          name: 'LOMBA SIHIR',
+          time: '18:00 - 19:00',
+          image: '/placeholder.svg?height=600&width=600',
+          type: 'main',
         },
         {
-          name: "DIALOG DINI HARI",
-          time: "16:30 - 17:30",
-          image: "/placeholder.svg?height=400&width=400",
-          type: "supporting",
+          name: 'DIALOG DINI HARI',
+          time: '16:30 - 17:30',
+          image: '/placeholder.svg?height=400&width=400',
+          type: 'supporting',
         },
         {
-          name: "PERUNGGU",
-          time: "15:00 - 16:00",
-          image: "/placeholder.svg?height=400&width=400",
-          type: "supporting",
+          name: 'PERUNGGU',
+          time: '15:00 - 16:00',
+          image: '/placeholder.svg?height=400&width=400',
+          type: 'supporting',
         },
         {
-          name: "KELOMPOK PENERBANG ROKET",
-          time: "13:30 - 14:30",
-          image: "/placeholder.svg?height=400&width=400",
-          type: "supporting",
+          name: 'KELOMPOK PENERBANG ROKET',
+          time: '13:30 - 14:30',
+          image: '/placeholder.svg?height=400&width=400',
+          type: 'supporting',
         },
       ],
     },
-  ]
+  ];
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -106,9 +106,7 @@ export default function LineupPage() {
               <h1 className="text-6xl md:text-8xl font-bold mb-4">
                 LINE<span className="text-primary">UP</span>
               </h1>
-              <p className="text-xl text-muted-foreground max-w-3xl">
-                Musisi terbaik Indonesia akan tampil di Main Stage Cherrypop Festival 2025.
-              </p>
+              <p className="text-xl text-muted-foreground max-w-3xl">Musisi terbaik Indonesia akan tampil di Main Stage Cherrypop Festival 2025.</p>
             </div>
 
             {/* Stage Info */}
@@ -131,11 +129,7 @@ export default function LineupPage() {
             <div className="mb-12">
               <div className="grid grid-cols-2 gap-px bg-border">
                 {days.map((day, index) => (
-                  <a
-                    key={index}
-                    href={`#day-${index + 1}`}
-                    className="bg-black p-6 text-center hover:bg-accent/5 transition-colors"
-                  >
+                  <a key={index} href={`#day-${index + 1}`} className="bg-black p-6 text-center hover:bg-accent/5 transition-colors">
                     <p className="text-primary text-sm mb-1">{day.day}</p>
                     <h3 className="text-3xl font-bold">
                       {day.date} {day.month}
@@ -157,17 +151,12 @@ export default function LineupPage() {
 
                 {/* Headliner */}
                 {day.artists
-                  .filter((artist) => artist.type === "headliner")
+                  .filter((artist) => artist.type === 'headliner')
                   .map((artist, index) => (
                     <div key={index} className="mb-16">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                         <div className="relative aspect-square overflow-hidden">
-                          <Image
-                            src={artist.image || "/placeholder.svg"}
-                            alt={artist.name}
-                            fill
-                            className="object-cover"
-                          />
+                          <Image src={artist.image || '/placeholder.svg'} alt={artist.name} fill className="object-cover" />
                         </div>
                         <div>
                           <div className="inline-block bg-primary px-3 py-1 mb-4">
@@ -186,16 +175,11 @@ export default function LineupPage() {
                   <h3 className="text-2xl font-bold mb-6">MAIN ACTS</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border">
                     {day.artists
-                      .filter((artist) => artist.type === "main")
+                      .filter((artist) => artist.type === 'main')
                       .map((artist, index) => (
                         <div key={index} className="bg-black p-6 flex items-center gap-6">
                           <div className="relative w-24 h-24 shrink-0">
-                            <Image
-                              src={artist.image || "/placeholder.svg"}
-                              alt={artist.name}
-                              fill
-                              className="object-cover"
-                            />
+                            <Image src={artist.image || '/placeholder.svg'} alt={artist.name} fill className="object-cover" />
                           </div>
                           <div>
                             <h4 className="text-2xl font-bold">{artist.name}</h4>
@@ -211,17 +195,12 @@ export default function LineupPage() {
                   <h3 className="text-2xl font-bold mb-6">SUPPORTING ACTS</h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-border">
                     {day.artists
-                      .filter((artist) => artist.type === "supporting")
+                      .filter((artist) => artist.type === 'supporting')
                       .map((artist, index) => (
                         <div key={index} className="bg-black p-4">
                           <div className="flex items-center gap-4">
                             <div className="relative w-16 h-16 shrink-0">
-                              <Image
-                                src={artist.image || "/placeholder.svg"}
-                                alt={artist.name}
-                                fill
-                                className="object-cover"
-                              />
+                              <Image src={artist.image || '/placeholder.svg'} alt={artist.name} fill className="object-cover" />
                             </div>
                             <div>
                               <h4 className="text-lg font-bold">{artist.name}</h4>
@@ -264,5 +243,5 @@ export default function LineupPage() {
       </main>
       <Footer />
     </div>
-  )
+  );
 }
