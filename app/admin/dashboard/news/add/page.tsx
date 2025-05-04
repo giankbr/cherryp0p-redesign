@@ -1,59 +1,50 @@
-"use client"
+'use client';
 
-import { useState } from "react"
-import Link from "next/link"
-import { ArrowLeft, ImageIcon, Calendar, Clock, Tag, Save, X } from "lucide-react"
+import { ArrowLeft, Calendar, Clock, ImageIcon, Save, Tag, X } from 'lucide-react';
+import Link from 'next/link';
+import { useState } from 'react';
 
 export default function AddNewsPage() {
   const [formData, setFormData] = useState({
-    title: "",
-    excerpt: "",
-    content: "",
-    category: "",
-    tags: "",
-    publishDate: "",
-    readTime: "",
+    title: '',
+    excerpt: '',
+    content: '',
+    category: '',
+    tags: '',
+    publishDate: '',
+    readTime: '',
     featuredImage: null,
-    status: "draft",
-  })
+    status: 'draft',
+  });
 
-  const [previewImage, setPreviewImage] = useState<string | null>(null)
+  const [previewImage, setPreviewImage] = useState<string | null>(null);
 
   const handleChange = (e) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleImageChange = (e) => {
-    const file = e.target.files?.[0]
+    const file = e.target.files?.[0];
     if (file) {
-      setFormData((prev) => ({ ...prev, featuredImage: file }))
-      const reader = new FileReader()
+      setFormData((prev) => ({ ...prev, featuredImage: file }));
+      const reader = new FileReader();
       reader.onloadend = () => {
-        setPreviewImage(reader.result as string)
-      }
-      reader.readAsDataURL(file)
+        setPreviewImage(reader.result as string);
+      };
+      reader.readAsDataURL(file);
     }
-  }
+  };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     // Here you would typically send the data to your API
-    console.log("Form submitted:", formData)
+    console.log('Form submitted:', formData);
     // For demo purposes, just show an alert
-    alert("Article saved successfully!")
-  }
+    alert('Article saved successfully!');
+  };
 
-  const categories = [
-    "Announcements",
-    "Interviews",
-    "Programs",
-    "Recaps",
-    "Behind The Scenes",
-    "Community",
-    "Artist Spotlight",
-    "Merchandise",
-  ]
+  const categories = ['Announcements', 'Interviews', 'Programs', 'Recaps', 'Behind The Scenes', 'Community', 'Artist Spotlight', 'Merchandise'];
 
   return (
     <div className="p-6 md:p-10">
@@ -205,16 +196,10 @@ export default function AddNewsPage() {
                 </div>
               </div>
               <div className="mt-6 flex justify-between">
-                <button
-                  type="button"
-                  className="px-4 py-2 bg-accent/10 hover:bg-accent/20 transition-colors rounded-md"
-                >
+                <button type="button" className="px-4 py-2 bg-accent/10 hover:bg-accent/20 transition-colors rounded-md">
                   Save Draft
                 </button>
-                <button
-                  type="submit"
-                  className="px-4 py-2 bg-primary text-white hover:bg-primary/90 transition-colors rounded-md"
-                >
+                <button type="submit" className="px-4 py-2 bg-primary text-white hover:bg-primary/90 transition-colors rounded-md">
                   Publish
                 </button>
               </div>
@@ -225,16 +210,12 @@ export default function AddNewsPage() {
               <h2 className="text-lg font-bold mb-4">Featured Image</h2>
               {previewImage ? (
                 <div className="relative">
-                  <img
-                    src={previewImage || "/placeholder.svg"}
-                    alt="Preview"
-                    className="w-full h-40 object-cover rounded-md"
-                  />
+                  <img src={previewImage || '/placeholder.svg'} alt="Preview" className="w-full h-40 object-cover rounded-md" />
                   <button
                     type="button"
                     onClick={() => {
-                      setPreviewImage(null)
-                      setFormData((prev) => ({ ...prev, featuredImage: null }))
+                      setPreviewImage(null);
+                      setFormData((prev) => ({ ...prev, featuredImage: null }));
                     }}
                     className="absolute top-2 right-2 p-1 bg-black/50 rounded-full hover:bg-black/70 transition-colors"
                   >
@@ -245,18 +226,8 @@ export default function AddNewsPage() {
                 <div className="border-2 border-dashed border-border rounded-md p-8 text-center">
                   <ImageIcon className="h-10 w-10 mx-auto mb-2 text-muted-foreground" />
                   <p className="text-sm text-muted-foreground mb-4">Drag and drop an image, or click to browse</p>
-                  <input
-                    type="file"
-                    id="featuredImage"
-                    name="featuredImage"
-                    accept="image/*"
-                    onChange={handleImageChange}
-                    className="hidden"
-                  />
-                  <label
-                    htmlFor="featuredImage"
-                    className="px-4 py-2 bg-accent/10 hover:bg-accent/20 transition-colors rounded-md cursor-pointer"
-                  >
+                  <input type="file" id="featuredImage" name="featuredImage" accept="image/*" onChange={handleImageChange} className="hidden" />
+                  <label htmlFor="featuredImage" className="px-4 py-2 bg-accent/10 hover:bg-accent/20 transition-colors rounded-md cursor-pointer">
                     Select Image
                   </label>
                 </div>
@@ -312,14 +283,11 @@ export default function AddNewsPage() {
           <button type="button" className="px-4 py-2 bg-accent/10 hover:bg-accent/20 transition-colors rounded-md">
             Save Draft
           </button>
-          <button
-            type="submit"
-            className="px-4 py-2 bg-primary text-white hover:bg-primary/90 transition-colors rounded-md"
-          >
+          <button type="submit" className="px-4 py-2 bg-primary text-white hover:bg-primary/90 transition-colors rounded-md">
             <Save className="h-4 w-4 mr-2 inline" /> Publish
           </button>
         </div>
       </form>
     </div>
-  )
+  );
 }
