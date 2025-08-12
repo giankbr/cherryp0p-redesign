@@ -1,9 +1,81 @@
+'use client';
+
 import { Footer } from '@/components/footer';
 import { Header } from '@/components/header';
 import { Marquee } from '@/components/marquee';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from 'next/image';
+import { useEffect } from 'react';
 
 export default function LineupPage() {
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Animate title and subtitle
+      gsap.fromTo(
+        '.lineup-title',
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          scrollTrigger: {
+            trigger: '.lineup-title',
+            start: 'top 80%',
+          },
+        }
+      );
+
+      gsap.fromTo(
+        '.lineup-subtitle',
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          delay: 0.2,
+          scrollTrigger: {
+            trigger: '.lineup-subtitle',
+            start: 'top 80%',
+          },
+        }
+      );
+
+      // Animate day tabs
+      gsap.fromTo(
+        '.day-tab',
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          stagger: 0.1,
+          scrollTrigger: {
+            trigger: '.day-tabs',
+            start: 'top 80%',
+          },
+        }
+      );
+
+      // Animate artist cards
+      gsap.fromTo(
+        '.artist-card',
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.1,
+          scrollTrigger: {
+            trigger: '.artist-grid',
+            start: 'top 80%',
+          },
+        }
+      );
+    }
+  }, []);
   const days = [
     { day: 'DAY 1', date: '15', month: 'AUG' },
     { day: 'DAY 2', date: '16', month: 'AUG' },
@@ -11,27 +83,20 @@ export default function LineupPage() {
   ];
 
   const day1Artists = [
-    { name: 'HINDIA', time: '20:00', stage: 'Main Stage' },
-    { name: 'EFEK RUMAH KACA', time: '18:30', stage: 'Main Stage' },
-    { name: 'BARASUARA', time: '17:00', stage: 'Main Stage' },
-    { name: 'SHEILA ON 7', time: '15:30', stage: 'Main Stage' },
-    { name: 'PETERPAN', time: '14:00', stage: 'Main Stage' },
+    { name: 'HINDIA', time: '21:30', stage: 'Main Stage', image: '/placeholder.svg', isFeatured: true },
+    { name: 'KUNTO AJI', time: '18:00', stage: 'Main Stage', image: '/placeholder.svg' },
+    { name: 'BARASUARA', time: '19:00', stage: 'Main Stage', image: '/placeholder.svg' },
   ];
 
   const day2Artists = [
-    { name: 'NOAH', time: '20:00', stage: 'Main Stage' },
-    { name: 'SLANK', time: '18:30', stage: 'Main Stage' },
-    { name: 'GIGI', time: '17:00', stage: 'Main Stage' },
-    { name: 'DEWA 19', time: '15:30', stage: 'Main Stage' },
-    { name: 'PADI', time: '14:00', stage: 'Main Stage' },
+    { name: 'ISYANA SARASVATI', time: '21:00', stage: 'Main Stage', image: '/placeholder.svg' },
+    { name: 'EFEK RUMAH KACA', time: '20:00', stage: 'Main Stage', image: '/placeholder.svg' },
+    { name: 'LOMBA SIHIR', time: '17:00', stage: 'Main Stage', image: '/placeholder.svg' },
   ];
 
   const day3Artists = [
-    { name: 'COLDPLAY', time: '20:00', stage: 'Main Stage' },
-    { name: 'U2', time: '18:30', stage: 'Main Stage' },
-    { name: 'THE BEATLES', time: '17:00', stage: 'Main Stage' },
-    { name: 'QUEEN', time: '15:30', stage: 'Main Stage' },
-    { name: 'LED ZEPPELIN', time: '14:00', stage: 'Main Stage' },
+    { name: 'FEAST', time: '19:30', stage: 'Main Stage', image: '/placeholder.svg', isFeatured: true },
+    { name: 'DANILLA', time: '18:30', stage: 'Main Stage', image: '/placeholder.svg' },
   ];
 
   const getArtistsForDay = (dayIndex: number) => {
@@ -55,10 +120,10 @@ export default function LineupPage() {
         <section className="py-16">
           <div className="container mx-auto px-4">
             <div className="mb-16">
-              <h1 className="text-6xl md:text-8xl font-bold mb-4">
+              <h1 className="lineup-title text-6xl md:text-8xl font-bold mb-4">
                 LINE<span className="text-primary">UP</span>
               </h1>
-              <p className="text-xl text-muted-foreground max-w-3xl">Musisi terbaik Indonesia akan tampil di Main Stage Cherrypop Festival 2025.</p>
+              <p className="lineup-subtitle text-xl text-muted-foreground max-w-3xl">Musisi terbaik Indonesia akan tampil di Main Stage Cherrypop Festival 2025.</p>
             </div>
 
             {/* Stage Info */}
@@ -78,10 +143,10 @@ export default function LineupPage() {
             </div>
 
             {/* Day Tabs */}
-            <div className="mb-12">
-              <div className="grid grid-cols-2 gap-px bg-border">
+            <div className="mb-12 day-tabs">
+              <div className="grid grid-cols-3 gap-px bg-border">
                 {days.map((day, index) => (
-                  <a key={index} href={`#day-${index + 1}`} className="bg-background p-6 text-center hover:bg-accent/5 transition-colors">
+                  <a key={index} href={`#day-${index + 1}`} className="day-tab bg-background p-6 text-center hover:bg-accent/5 transition-colors">
                     <p className="text-primary text-sm mb-1">{day.day}</p>
                     <h3 className="text-3xl font-bold">
                       {day.date} {day.month}
@@ -96,23 +161,26 @@ export default function LineupPage() {
               <div key={dayIndex} id={`day-${dayIndex + 1}`} className="mb-16">
                 <div className="mb-8">
                   <h2 className="text-4xl font-bold mb-2">{day.day}</h2>
-                  <p className="text-muted-foreground">{day.date} {day.month} 2025</p>
+                  <p className="text-muted-foreground">
+                    {day.date} {day.month} 2025
+                  </p>
                 </div>
 
-                <div className="space-y-4">
+                <div className="artist-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {getArtistsForDay(dayIndex).map((artist, artistIndex) => (
-                    <div key={artistIndex} className="flex items-center justify-between p-6 border border-border hover:border-primary/50 transition-colors">
-                      <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
-                          <span className="text-white font-bold text-sm">{artistIndex + 1}</span>
+                    <div
+                      key={artistIndex}
+                      className={`artist-card relative overflow-hidden border border-border hover:border-primary/50 transition-all duration-300 ${artist.isFeatured ? 'col-span-2 row-span-2' : ''}`}
+                    >
+                      <div className="relative aspect-square">
+                        <Image src={artist.image} alt={artist.name} fill className="object-cover transition-transform duration-500 hover:scale-105" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col justify-end p-6">
+                          <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">{artist.name}</h3>
+                          <div className="flex flex-col gap-2">
+                            <p className="text-white/80">{artist.stage}</p>
+                            <p className="text-xl font-bold text-primary">{artist.time}</p>
+                          </div>
                         </div>
-                        <div>
-                          <h3 className="text-2xl font-bold">{artist.name}</h3>
-                          <p className="text-muted-foreground">{artist.stage}</p>
-                        </div>
-                      </div>
-                      <div className="text-right">
-                        <p className="text-2xl font-bold text-primary">{artist.time}</p>
                       </div>
                     </div>
                   ))}
@@ -138,7 +206,7 @@ export default function LineupPage() {
                 </div>
                 <div>
                   <h4 className="font-bold mb-2">Venue</h4>
-                  <p className="text-muted-foreground">Jogja Expo Center, Yogyakarta</p>
+                  <p className="text-muted-foreground">Lapangan Kenari, Yogyakarta</p>
                 </div>
               </div>
             </div>
