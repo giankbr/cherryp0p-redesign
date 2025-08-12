@@ -6,7 +6,7 @@ export function MainGrid() {
   return (
     <section className="container mx-auto px-4 py-12">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1 mb-1">
-        <div className="bg-black aspect-square relative overflow-hidden hover-scale">
+        <div className="bg-accent aspect-square relative overflow-hidden hover-scale">
           <Image
             src="/placeholder.svg?height=600&width=600"
             alt="Cherrypop Festival"
@@ -15,8 +15,8 @@ export function MainGrid() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
           <div className="absolute bottom-0 left-0 p-6">
-            <h2 className="text-4xl md:text-5xl font-bold mb-2">CHERRYPOP</h2>
-            <p className="text-lg text-muted-foreground">FESTIVAL 2025</p>
+            <h2 className="text-4xl md:text-5xl font-bold mb-2 text-white">CHERRYPOP</h2>
+            <p className="text-lg text-gray-200">FESTIVAL 2025</p>
           </div>
         </div>
 
@@ -31,7 +31,7 @@ export function MainGrid() {
           </p>
         </div>
 
-        <div className="bg-black aspect-square relative overflow-hidden hover-scale">
+        <div className="bg-accent aspect-square relative overflow-hidden hover-scale">
           <Image
             src="/placeholder.svg?height=600&width=600"
             alt="Festival Atmosphere"
@@ -40,8 +40,8 @@ export function MainGrid() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
           <div className="absolute bottom-0 left-0 p-6">
-            <h3 className="text-xl font-medium mb-2">WEEKEND POP TOUR</h3>
-            <p className="text-muted-foreground">
+            <h3 className="text-xl font-medium mb-2 text-white">WEEKEND POP TOUR</h3>
+            <p className="text-gray-200">
               Tur pra-acara yang mengadakan gig intim tiap akhir pekan di beberapa kota.
             </p>
           </div>
@@ -61,7 +61,7 @@ export function MainGrid() {
           </Link>
         </div>
 
-        <div className="bg-black aspect-video relative overflow-hidden hover-scale">
+        <div className="bg-accent aspect-video relative overflow-hidden hover-scale">
           <Image
             src="/placeholder.svg?height=600&width=1000"
             alt="Concert Performance"
@@ -70,8 +70,8 @@ export function MainGrid() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
           <div className="absolute bottom-0 left-0 p-6">
-            <h3 className="text-xl font-medium mb-2">REKAM SKENA</h3>
-            <p className="text-muted-foreground">
+            <h3 className="text-xl font-medium mb-2 text-white">REKAM SKENA</h3>
+            <p className="text-gray-200">
               Aktivasi untuk dokumentasi musik yang dikerjakan langsung oleh para pegiat musik dan audio visual.
             </p>
           </div>
@@ -79,12 +79,12 @@ export function MainGrid() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-1">
-        <div className="bg-black aspect-square relative overflow-hidden hover-scale">
+        <div className="bg-accent aspect-square relative overflow-hidden hover-scale">
           <Image src="/placeholder.svg?height=600&width=600" alt="Workshop" fill className="object-cover opacity-70" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
           <div className="absolute bottom-0 left-0 p-6">
-            <h3 className="text-xl font-medium mb-2">PENA SKENA</h3>
-            <p className="text-muted-foreground">Workshop jurnalisme musik yang bekerjasama dengan media arus utama.</p>
+            <h3 className="text-xl font-medium mb-2 text-white">PENA SKENA</h3>
+            <p className="text-gray-200">Workshop jurnalisme musik yang bekerjasama dengan media arus utama.</p>
           </div>
         </div>
 
@@ -98,7 +98,7 @@ export function MainGrid() {
           </Link>
         </div>
 
-        <div className="bg-black aspect-square relative overflow-hidden hover-scale">
+        <div className="bg-accent aspect-square relative overflow-hidden hover-scale">
           <Image
             src="/placeholder.svg?height=600&width=600"
             alt="Festival Crowd"
@@ -107,8 +107,8 @@ export function MainGrid() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
           <div className="absolute bottom-0 left-0 p-6">
-            <h3 className="text-xl font-medium mb-2">GALLERY</h3>
-            <p className="text-muted-foreground">
+            <h3 className="text-xl font-medium mb-2 text-white">GALLERY</h3>
+            <p className="text-gray-200">
               Momen-momen tak terlupakan dari Cherrypop Festival tahun-tahun sebelumnya.
             </p>
           </div>

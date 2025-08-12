@@ -1,98 +1,86 @@
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
-import { Marquee } from "@/components/marquee"
-import Image from "next/image"
-import Link from "next/link"
-import { ArrowRight, Calendar, Search } from "lucide-react"
+import { Header } from '@/components/header';
+import { Marquee } from '@/components/marquee';
+import { Search } from 'lucide-react';
 
-// This would normally come from a CMS or API
-const getNewsArticles = () => {
-  // Mock data for demonstration
+function getNewsArticles() {
   return {
     featured: {
-      title: "CHERRYPOP FESTIVAL ANNOUNCES 2025 DATES",
-      slug: "cherrypop-festival-announces-2025-dates",
-      excerpt: "Festival musik tahunan di Yogyakarta akan kembali digelar pada 15-17 Agustus 2025.",
-      date: "10 JANUARI 2025",
-      image: "/placeholder.svg?height=800&width=1200",
+      title: 'Cherrypop Festival 2025: Lineup Terbaik Indonesia Akan Hadir',
+      excerpt: 'Festival musik tahunan di Yogyakarta akan menghadirkan lineup terbaik dari musisi Indonesia dan internasional. Tahun ini, Cherrypop Festival akan menghadirkan lebih dari 50 musisi dari berbagai genre musik.',
+      date: 'December 15, 2024',
+      category: 'Announcements',
+      image: '/placeholder.svg?height=600&width=900',
+      slug: 'cherrypop-festival-2025-lineup',
     },
     latest: [
       {
-        title: "INTERVIEW WITH HINDIA",
-        slug: "interview-with-hindia",
-        excerpt: "Berbincang dengan Hindia tentang musik dan penampilannya di Cherrypop Festival.",
-        date: "5 JANUARI 2025",
-        image: "/placeholder.svg?height=400&width=600",
-        category: "Interviews",
+        title: 'Workshop Kreatif: Kolaborasi Seni dan Teknologi',
+        excerpt: 'Serangkaian workshop kreatif akan digelar untuk mendukung pertumbuhan ekosistem kreatif Indonesia.',
+        date: 'December 10, 2024',
+        category: 'Programs',
+        image: '/placeholder.svg?height=400&width=600',
+        slug: 'workshop-kreatif-kolaborasi-seni-teknologi',
       },
       {
-        title: "REKAM SKENA: DOKUMENTASI MUSIK LOKAL",
-        slug: "rekam-skena-dokumentasi-musik-lokal",
-        excerpt: "Melihat bagaimana program Rekam Skena mendokumentasikan pergerakan musik lokal.",
-        date: "28 DESEMBER 2024",
-        image: "/placeholder.svg?height=400&width=600",
-        category: "Programs",
+        title: 'Interview: Hindia Tentang Musik dan Cherrypop Festival',
+        excerpt: 'Berbincang dengan Hindia tentang musik, inspirasi, dan persiapannya untuk tampil di Cherrypop Festival 2025.',
+        date: 'December 8, 2024',
+        category: 'Interviews',
+        image: '/placeholder.svg?height=400&width=600',
+        slug: 'interview-hindia-tentang-musik-cherrypop',
       },
       {
-        title: "WEEKEND POP TOUR DATES ANNOUNCED",
-        slug: "weekend-pop-tour-dates-announced",
-        excerpt: "Jadwal lengkap tur pra-acara Cherrypop Festival di beberapa kota di Indonesia.",
-        date: "15 DESEMBER 2024",
-        image: "/placeholder.svg?height=400&width=600",
-        category: "Announcements",
+        title: 'Pameran Seni Kontemporer: Suara Anak Muda',
+        excerpt: 'Pameran seni yang menampilkan karya-karya terbaik dari seniman muda Indonesia.',
+        date: 'December 5, 2024',
+        category: 'Programs',
+        image: '/placeholder.svg?height=400&width=600',
+        slug: 'pameran-seni-kontemporer-suara-anak-muda',
+      },
+      {
+        title: 'Kuliner Lokal: Rasa Nusantara di Cherrypop',
+        excerpt: 'Festival kuliner yang menghadirkan cita rasa terbaik dari berbagai daerah di Indonesia.',
+        date: 'November 30, 2024',
+        category: 'Programs',
+        image: '/placeholder.svg?height=400&width=600',
+        slug: 'kuliner-lokal-rasa-nusantara-cherrypop',
+      },
+      {
+        title: 'Behind the Scenes: Persiapan Cherrypop Festival 2025',
+        excerpt: 'Melihat bagaimana tim Cherrypop Festival mempersiapkan acara terbesar tahun ini.',
+        date: 'November 25, 2024',
+        category: 'Behind The Scenes',
+        image: '/placeholder.svg?height=400&width=600',
+        slug: 'behind-scenes-persiapan-cherrypop-2025',
+      },
+      {
+        title: 'Artist Spotlight: Efek Rumah Kaca',
+        excerpt: 'Mengenal lebih dekat band Efek Rumah Kaca yang akan tampil di Cherrypop Festival 2025.',
+        date: 'November 20, 2024',
+        category: 'Artist Spotlight',
+        image: '/placeholder.svg?height=400&width=600',
+        slug: 'artist-spotlight-efek-rumah-kaca',
       },
     ],
     archive: [
       {
-        title: "CHERRYPOP FESTIVAL 2024 RECAP",
-        slug: "cherrypop-festival-2024-recap",
-        excerpt: "Melihat kembali momen-momen terbaik dari Cherrypop Festival 2024.",
-        date: "30 NOVEMBER 2024",
-        image: "/placeholder.svg?height=400&width=600",
-        category: "Recaps",
+        title: 'Cherrypop Festival 2024: Sukses Besar dengan 15,000 Pengunjung',
+        excerpt: 'Festival musik tahun lalu berhasil menarik lebih dari 15,000 pengunjung dari seluruh Indonesia.',
+        date: 'August 20, 2024',
+        category: 'Recaps',
+        image: '/placeholder.svg?height=400&width=600',
+        slug: 'cherrypop-festival-2024-sukses-besar',
       },
       {
-        title: "BEHIND THE SCENES: STAGE DESIGN",
-        slug: "behind-the-scenes-stage-design",
-        excerpt: "Proses kreatif di balik desain panggung Cherrypop Festival.",
-        date: "15 NOVEMBER 2024",
-        image: "/placeholder.svg?height=400&width=600",
-        category: "Behind The Scenes",
-      },
-      {
-        title: "MEET THE VOLUNTEERS",
-        slug: "meet-the-volunteers",
-        excerpt: "Mengenal para relawan yang membantu kesuksesan Cherrypop Festival.",
-        date: "1 NOVEMBER 2024",
-        image: "/placeholder.svg?height=400&width=600",
-        category: "Community",
-      },
-      {
-        title: "LOCAL FOOD VENDORS AT CHERRYPOP",
-        slug: "local-food-vendors-at-cherrypop",
-        excerpt: "Kuliner lokal yang akan hadir di Cherrypop Festival 2025.",
-        date: "20 OKTOBER 2024",
-        image: "/placeholder.svg?height=400&width=600",
-        category: "Food & Drinks",
-      },
-      {
-        title: "SUSTAINABILITY INITIATIVES FOR 2025",
-        slug: "sustainability-initiatives-for-2025",
-        excerpt: "Program keberlanjutan yang akan diterapkan di Cherrypop Festival 2025.",
-        date: "5 OKTOBER 2024",
-        image: "/placeholder.svg?height=400&width=600",
-        category: "Sustainability",
-      },
-      {
-        title: "ARTIST SPOTLIGHT: EFEK RUMAH KACA",
-        slug: "artist-spotlight-efek-rumah-kaca",
-        excerpt: "Mengenal lebih dekat Efek Rumah Kaca, salah satu headliner Cherrypop Festival 2025.",
-        date: "20 SEPTEMBER 2024",
-        image: "/placeholder.svg?height=400&width=600",
-        category: "Artist Spotlight",
+        title: 'Community Spotlight: Musisi Lokal Yogyakarta',
+        excerpt: 'Mengenal musisi-musisi lokal Yogyakarta yang berkontribusi pada perkembangan musik Indonesia.',
+        date: 'August 15, 2024',
+        category: 'Community',
+        image: '/placeholder.svg?height=400&width=600',
+        slug: 'community-spotlight-musisi-lokal-yogyakarta',
       },
     ],
-  }
+  };
 }
 
 export default function NewsPage() {
@@ -113,7 +101,7 @@ export default function NewsPage() {
     <div className="min-h-screen flex flex-col">
       <Header />
       <Marquee />
-      <main className="flex-1 bg-black">
+      <main className="flex-1">
         <section className="py-16">
           <div className="container mx-auto px-4">
             <div className="mb-16">
@@ -152,115 +140,96 @@ export default function NewsPage() {
 
             {/* Featured Article */}
             <div className="mb-16">
-              <h2 className="text-primary text-lg mb-2">FEATURED</h2>
-              <Link href={`/news/${featured.slug}`} className="group">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                  <div className="relative aspect-[4/3] overflow-hidden">
-                    <Image
-                      src={featured.image || "/placeholder.svg"}
-                      alt={featured.title}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div className="relative aspect-video overflow-hidden rounded-lg">
+                  <img
+                    src={featured.image}
+                    alt={featured.title}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="flex flex-col justify-center">
+                  <div className="inline-block bg-primary text-white px-3 py-1 text-sm mb-4 w-fit">
+                    {featured.category}
                   </div>
-                  <div>
-                    <div className="flex items-center text-sm text-muted-foreground mb-4">
-                      <Calendar className="h-4 w-4 mr-2" />
-                      {featured.date}
-                    </div>
-                    <h3 className="text-3xl md:text-4xl font-bold mb-4 group-hover:text-primary transition-colors">
-                      {featured.title}
-                    </h3>
-                    <p className="text-muted-foreground text-lg mb-6">{featured.excerpt}</p>
-                    <div className="inline-flex items-center group">
-                      READ MORE <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                    </div>
+                  <h2 className="text-3xl md:text-4xl font-bold mb-4">{featured.title}</h2>
+                  <p className="text-muted-foreground mb-4">{featured.excerpt}</p>
+                  <div className="flex items-center gap-4">
+                    <span className="text-sm text-muted-foreground">{featured.date}</span>
+                    <a href={`/news/${featured.slug}`} className="text-primary hover:underline">
+                      Read More →
+                    </a>
                   </div>
                 </div>
-              </Link>
+              </div>
             </div>
 
             {/* Latest Articles */}
             <div className="mb-16">
-              <h2 className="text-primary text-lg mb-6">LATEST ARTICLES</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <h2 className="text-3xl font-bold mb-8">Latest Articles</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {latest.map((article, index) => (
-                  <Link key={index} href={`/news/${article.slug}`} className="group">
-                    <div className="mb-4 relative aspect-[4/3] overflow-hidden">
-                      <div className="absolute top-0 right-0 bg-primary z-10 px-3 py-1 text-xs">{article.category}</div>
-                      <Image
-                        src={article.image || "/placeholder.svg"}
+                  <article key={index} className="group">
+                    <div className="relative aspect-video overflow-hidden rounded-lg mb-4">
+                      <img
+                        src={article.image}
                         alt={article.title}
-                        fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                       />
                     </div>
-                    <div>
-                      <div className="flex items-center text-sm text-muted-foreground mb-2">
-                        <Calendar className="h-4 w-4 mr-2" />
-                        {article.date}
-                      </div>
-                      <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
-                        {article.title}
-                      </h3>
-                      <p className="text-muted-foreground">{article.excerpt}</p>
+                    <div className="inline-block bg-accent/10 text-primary px-2 py-1 text-xs mb-2">
+                      {article.category}
                     </div>
-                  </Link>
+                    <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
+                      {article.title}
+                    </h3>
+                    <p className="text-muted-foreground text-sm mb-3 line-clamp-2">{article.excerpt}</p>
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs text-muted-foreground">{article.date}</span>
+                      <a href={`/news/${article.slug}`} className="text-primary hover:underline text-sm">
+                        Read More →
+                      </a>
+                    </div>
+                  </article>
                 ))}
               </div>
             </div>
 
             {/* Archive */}
             <div>
-              <h2 className="text-primary text-lg mb-6">ARCHIVE</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <h2 className="text-3xl font-bold mb-8">Archive</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {archive.map((article, index) => (
-                  <Link key={index} href={`/news/${article.slug}`} className="group">
-                    <div className="mb-4 relative aspect-[4/3] overflow-hidden">
-                      <div className="absolute top-0 right-0 bg-accent/20 z-10 px-3 py-1 text-xs">
-                        {article.category}
-                      </div>
-                      <Image
-                        src={article.image || "/placeholder.svg"}
+                  <article key={index} className="flex gap-4 group">
+                    <div className="relative w-24 h-24 overflow-hidden rounded-lg shrink-0">
+                      <img
+                        src={article.image}
                         alt={article.title}
-                        fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                       />
                     </div>
-                    <div>
-                      <div className="flex items-center text-sm text-muted-foreground mb-2">
-                        <Calendar className="h-4 w-4 mr-2" />
-                        {article.date}
+                    <div className="flex-1">
+                      <div className="inline-block bg-accent/10 text-primary px-2 py-1 text-xs mb-2">
+                        {article.category}
                       </div>
-                      <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
+                      <h3 className="text-lg font-bold mb-2 group-hover:text-primary transition-colors">
                         {article.title}
                       </h3>
-                      <p className="text-muted-foreground">{article.excerpt}</p>
+                      <p className="text-muted-foreground text-sm mb-2 line-clamp-2">{article.excerpt}</p>
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs text-muted-foreground">{article.date}</span>
+                        <a href={`/news/${article.slug}`} className="text-primary hover:underline text-sm">
+                          Read More →
+                        </a>
+                      </div>
                     </div>
-                  </Link>
+                  </article>
                 ))}
-              </div>
-            </div>
-
-            {/* Pagination */}
-            <div className="mt-16 flex justify-center">
-              <div className="flex space-x-2">
-                <button className="w-10 h-10 flex items-center justify-center bg-primary text-white">1</button>
-                <button className="w-10 h-10 flex items-center justify-center bg-accent/10 hover:bg-accent/20 transition-colors">
-                  2
-                </button>
-                <button className="w-10 h-10 flex items-center justify-center bg-accent/10 hover:bg-accent/20 transition-colors">
-                  3
-                </button>
-                <button className="w-10 h-10 flex items-center justify-center bg-accent/10 hover:bg-accent/20 transition-colors">
-                  <ArrowRight className="h-4 w-4" />
-                </button>
               </div>
             </div>
           </div>
         </section>
       </main>
-      <Footer />
     </div>
-  )
+  );
 }
