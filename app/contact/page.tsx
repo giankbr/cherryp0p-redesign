@@ -17,12 +17,9 @@ import {
       AlertCircle,
 } from "lucide-react";
 import Link from "next/link";
-import { useToast } from "@/components/ui/toast-provider";
 import { LoadingSpinner } from "@/components/ui/loading-spinner";
-import { SEO } from "@/components/seo";
 
 export default function ContactPage() {
-      const { addToast } = useToast();
       const [formData, setFormData] = useState({
             name: "",
             email: "",
@@ -77,7 +74,6 @@ export default function ContactPage() {
             e.preventDefault();
 
             if (!validateForm()) {
-                  addToast("Please fix the errors in the form", "error");
                   return;
             }
 
@@ -87,10 +83,7 @@ export default function ContactPage() {
             setTimeout(() => {
                   setIsSubmitting(false);
                   setSubmitSuccess(true);
-                  addToast(
-                        "Your message has been sent successfully!",
-                        "success",
-                  );
+                  // Success message is shown via state
                   setFormData({
                         name: "",
                         email: "",
@@ -130,10 +123,6 @@ export default function ContactPage() {
 
       return (
             <div className="min-h-screen flex flex-col bg-background">
-                  <SEO
-                        title="Contact Us"
-                        description="Get in touch with the Cherrypop Festival team. Have questions? We're here to help with all your festival inquiries."
-                  />
                   <Header />
                   <Marquee />
                   <main className="flex-1">
