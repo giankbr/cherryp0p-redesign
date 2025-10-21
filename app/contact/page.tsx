@@ -13,7 +13,6 @@ import {
       MapPin,
       Phone,
       Clock,
-      CheckCircle,
       AlertCircle,
 } from "lucide-react";
 import Link from "next/link";
@@ -90,14 +89,34 @@ export default function ContactPage() {
                         subject: "",
                         message: "",
                   });
-
-                  // Reset success message after 5 seconds
-                  setTimeout(() => {
-                        setSubmitSuccess(false);
-                  }, 5000);
             }, 1500);
       };
 
+      // Social links for contact section
+      const socialLinks = [
+            {
+                  name: "Instagram",
+                  icon: <Instagram size={20} />,
+                  href: "#",
+            },
+            {
+                  name: "Twitter",
+                  icon: <Twitter size={20} />,
+                  href: "#",
+            },
+            {
+                  name: "Facebook",
+                  icon: <Facebook size={20} />,
+                  href: "#",
+            },
+            {
+                  name: "Youtube",
+                  icon: <Youtube size={20} />,
+                  href: "#",
+            },
+      ];
+
+      // FAQs data
       const faqs = [
             {
                   question: "How can I purchase tickets for Cherrypop Festival?",
@@ -117,7 +136,7 @@ export default function ContactPage() {
             },
             {
                   question: "How can I become a vendor or sponsor?",
-                  answer: "For vendor and sponsorship opportunities, please email partnerships@cherrypop.id with your proposal and company information.",
+                  answer: "For vendor and sponsorship opportunities, please email partnerships@cherrypopfestival.com with your proposal and company information.",
             },
       ];
 
@@ -138,7 +157,7 @@ export default function ContactPage() {
                                     <p className="text-lg text-muted-foreground max-w-2xl">
                                           Have questions about Cherrypop
                                           Festival? We're here to help. Get in
-                                          touch with our team.
+                                          touch with us for any inquiries.
                                     </p>
                               </div>
                         </section>
@@ -155,28 +174,15 @@ export default function ContactPage() {
                                                       <h3 className="text-sm font-bold mb-1">
                                                             EMAIL
                                                       </h3>
+                                                      <p className="text-sm text-muted-foreground mb-2">
+                                                            For general
+                                                            inquiries:
+                                                      </p>
                                                       <a
-                                                            href="mailto:info@cherrypop.id"
-                                                            className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                                                            href="mailto:info@cherrypopfestival.com"
+                                                            className="text-primary hover:underline"
                                                       >
-                                                            info@cherrypop.id
-                                                      </a>
-                                                </div>
-                                          </div>
-
-                                          <div className="flex items-start gap-3 p-5 border border-border/50 rounded-lg bg-background/50 hover:border-primary/50 transition-colors">
-                                                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                                                      <Phone className="h-5 w-5 text-primary" />
-                                                </div>
-                                                <div>
-                                                      <h3 className="text-sm font-bold mb-1">
-                                                            PHONE
-                                                      </h3>
-                                                      <a
-                                                            href="tel:+62274123456"
-                                                            className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                                                      >
-                                                            +62 274 123456
+                                                            info@cherrypopfestival.com
                                                       </a>
                                                 </div>
                                           </div>
@@ -189,10 +195,30 @@ export default function ContactPage() {
                                                       <h3 className="text-sm font-bold mb-1">
                                                             LOCATION
                                                       </h3>
-                                                      <address className="text-sm text-muted-foreground not-italic">
-                                                            Jl. Prawirotaman No.
-                                                            12, Yogyakarta
-                                                      </address>
+                                                      <p className="text-sm text-muted-foreground mb-2">
+                                                            Festival Grounds:
+                                                      </p>
+                                                      <p className="text-sm">
+                                                            Yogyakarta,
+                                                            Indonesia
+                                                      </p>
+                                                </div>
+                                          </div>
+
+                                          <div className="flex items-start gap-3 p-5 border border-border/50 rounded-lg bg-background/50 hover:border-primary/50 transition-colors">
+                                                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                                                      <Clock className="h-5 w-5 text-primary" />
+                                                </div>
+                                                <div>
+                                                      <h3 className="text-sm font-bold mb-1">
+                                                            FESTIVAL DATES
+                                                      </h3>
+                                                      <p className="text-sm text-muted-foreground mb-2">
+                                                            Mark your calendar:
+                                                      </p>
+                                                      <p className="text-sm">
+                                                            August 15-17, 2025
+                                                      </p>
                                                 </div>
                                           </div>
                                     </div>
@@ -211,117 +237,83 @@ export default function ContactPage() {
                                                       </h2>
                                                       <p className="text-muted-foreground text-sm leading-relaxed">
                                                             Whether you have
-                                                            questions about
-                                                            tickets, want to
+                                                            questions about the
+                                                            festival, want to
                                                             become a sponsor, or
                                                             just want to say
                                                             hello, we'd love to
-                                                            hear from you.
+                                                            hear from you!
                                                       </p>
                                                 </div>
 
-                                                {/* Office Hours */}
-                                                <div className="p-5 border border-border/50 rounded-lg bg-accent/[0.03]">
-                                                      <div className="flex items-start gap-3 mb-4">
-                                                            <Clock className="h-5 w-5 text-primary mt-0.5" />
-                                                            <div>
-                                                                  <h3 className="text-sm font-bold mb-1">
-                                                                        OFFICE
-                                                                        HOURS
-                                                                  </h3>
-                                                                  <p className="text-sm text-muted-foreground">
-                                                                        Monday -
-                                                                        Friday
-                                                                  </p>
-                                                                  <p className="text-sm text-muted-foreground">
-                                                                        9:00 AM
-                                                                        - 5:00
-                                                                        PM WIB
-                                                                  </p>
-                                                            </div>
+                                                <div>
+                                                      <h3 className="text-lg font-bold mb-3">
+                                                            Connect With Us
+                                                      </h3>
+                                                      <div className="flex space-x-3">
+                                                            {socialLinks.map(
+                                                                  (
+                                                                        social,
+                                                                        index,
+                                                                  ) => (
+                                                                        <a
+                                                                              key={
+                                                                                    index
+                                                                              }
+                                                                              href={
+                                                                                    social.href
+                                                                              }
+                                                                              className="p-2.5 rounded-md bg-accent/10 hover:bg-accent/30 transition-colors"
+                                                                              aria-label={`Follow us on ${social.name}`}
+                                                                        >
+                                                                              {
+                                                                                    social.icon
+                                                                              }
+                                                                        </a>
+                                                                  ),
+                                                            )}
                                                       </div>
                                                 </div>
 
-                                                {/* Social Media */}
-                                                <div>
-                                                      <h4 className="text-sm font-bold mb-3">
-                                                            FOLLOW US
-                                                      </h4>
-                                                      <div className="flex gap-3">
-                                                            <Link
-                                                                  href="#"
-                                                                  className="w-10 h-10 rounded-full border border-border flex items-center justify-center hover:border-primary hover:bg-primary/10 transition-all"
-                                                            >
-                                                                  <Instagram
-                                                                        size={
-                                                                              18
-                                                                        }
-                                                                  />
-                                                            </Link>
-                                                            <Link
-                                                                  href="#"
-                                                                  className="w-10 h-10 rounded-full border border-border flex items-center justify-center hover:border-primary hover:bg-primary/10 transition-all"
-                                                            >
-                                                                  <Twitter
-                                                                        size={
-                                                                              18
-                                                                        }
-                                                                  />
-                                                            </Link>
-                                                            <Link
-                                                                  href="#"
-                                                                  className="w-10 h-10 rounded-full border border-border flex items-center justify-center hover:border-primary hover:bg-primary/10 transition-all"
-                                                            >
-                                                                  <Facebook
-                                                                        size={
-                                                                              18
-                                                                        }
-                                                                  />
-                                                            </Link>
-                                                            <Link
-                                                                  href="#"
-                                                                  className="w-10 h-10 rounded-full border border-border flex items-center justify-center hover:border-primary hover:bg-primary/10 transition-all"
-                                                            >
-                                                                  <Youtube
-                                                                        size={
-                                                                              18
-                                                                        }
-                                                                  />
-                                                            </Link>
+                                                <div className="bg-accent/[0.03] p-6 rounded-lg border border-border/30">
+                                                      <h3 className="text-lg font-bold mb-3">
+                                                            Office Hours
+                                                      </h3>
+                                                      <div className="space-y-2 text-sm text-muted-foreground">
+                                                            <p>
+                                                                  Monday -
+                                                                  Friday: 9:00
+                                                                  AM - 5:00 PM
+                                                            </p>
+                                                            <p>
+                                                                  Saturday:
+                                                                  10:00 AM -
+                                                                  2:00 PM
+                                                            </p>
+                                                            <p>
+                                                                  Sunday: Closed
+                                                            </p>
                                                       </div>
                                                 </div>
                                           </div>
 
                                           {/* Contact Form */}
-                                          <div className="lg:col-span-3">
-                                                <form
-                                                      onSubmit={handleSubmit}
-                                                      className="space-y-5"
-                                                >
-                                                      {submitSuccess && (
-                                                            <div className="bg-primary/10 border border-primary rounded-lg p-4">
-                                                                  <p className="text-sm text-foreground">
-                                                                        Your
-                                                                        message
-                                                                        has been
-                                                                        sent
-                                                                        successfully.
-                                                                        We'll
-                                                                        get back
-                                                                        to you
-                                                                        soon!
-                                                                  </p>
-                                                            </div>
-                                                      )}
-
-                                                      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                                                            <div>
+                                          <div className="lg:col-span-3 bg-background/50 p-8 rounded-lg border border-border/50">
+                                                <h2 className="text-2xl font-bold mb-6">
+                                                      Send Us a Message
+                                                </h2>
+                                                <form onSubmit={handleSubmit}>
+                                                      <div className="grid grid-cols-1 gap-5">
+                                                            <div className="mb-0">
                                                                   <label
                                                                         htmlFor="name"
-                                                                        className="block mb-2 text-sm font-medium"
+                                                                        className="block text-sm font-medium mb-1"
                                                                   >
                                                                         Your
-                                                                        Name
+                                                                        Name{" "}
+                                                                        <span className="text-red-500">
+                                                                              *
+                                                                        </span>
                                                                   </label>
                                                                   <input
                                                                         type="text"
@@ -333,19 +325,46 @@ export default function ContactPage() {
                                                                         onChange={
                                                                               handleChange
                                                                         }
-                                                                        required
-                                                                        className="w-full p-3 bg-accent/[0.03] border border-border rounded-lg focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
-                                                                        placeholder="John Doe"
+                                                                        className={`w-full p-3 bg-background border rounded-md focus:outline-none focus:ring-1 focus:ring-primary ${formErrors.name ? "border-red-500 bg-red-50/10" : "border-border"}`}
+                                                                        disabled={
+                                                                              isSubmitting
+                                                                        }
+                                                                        aria-invalid={
+                                                                              !!formErrors.name
+                                                                        }
+                                                                        aria-describedby={
+                                                                              formErrors.name
+                                                                                    ? "name-error"
+                                                                                    : undefined
+                                                                        }
                                                                   />
+                                                                  {formErrors.name && (
+                                                                        <p
+                                                                              id="name-error"
+                                                                              className="mt-1 text-sm text-red-500 flex items-center gap-1"
+                                                                        >
+                                                                              <AlertCircle
+                                                                                    size={
+                                                                                          14
+                                                                                    }
+                                                                              />
+                                                                              {
+                                                                                    formErrors.name
+                                                                              }
+                                                                        </p>
+                                                                  )}
                                                             </div>
 
-                                                            <div>
+                                                            <div className="mb-0">
                                                                   <label
                                                                         htmlFor="email"
-                                                                        className="block mb-2 text-sm font-medium"
+                                                                        className="block text-sm font-medium mb-1"
                                                                   >
                                                                         Your
-                                                                        Email
+                                                                        Email{" "}
+                                                                        <span className="text-red-500">
+                                                                              *
+                                                                        </span>
                                                                   </label>
                                                                   <input
                                                                         type="email"
@@ -357,95 +376,182 @@ export default function ContactPage() {
                                                                         onChange={
                                                                               handleChange
                                                                         }
-                                                                        required
-                                                                        className="w-full p-3 bg-accent/[0.03] border border-border rounded-lg focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
-                                                                        placeholder="john@example.com"
-                                                                  />
-                                                            </div>
-                                                      </div>
-
-                                                      <div>
-                                                            <div className="mb-4">
-                                                                  <label
-                                                                        htmlFor="subject"
-                                                                        className="block text-sm font-medium mb-1"
-                                                                  >
-                                                                        Subject <span className="text-red-500">*</span>
-                                                                  </label>
-                                                                  <input
-                                                                        type="text"
-                                                                        id="subject"
-                                                                        name="subject"
-                                                                        value={
-                                                                              formData.subject
+                                                                        className={`w-full p-3 bg-background border rounded-md focus:outline-none focus:ring-1 focus:ring-primary ${formErrors.email ? "border-red-500 bg-red-50/10" : "border-border"}`}
+                                                                        disabled={
+                                                                              isSubmitting
                                                                         }
-                                                                        onChange={
-                                                                              handleChange
+                                                                        aria-invalid={
+                                                                              !!formErrors.email
                                                                         }
-                                                                        className={`w-full p-3 border rounded-md bg-background focus:outline-none focus:ring-1 focus:ring-primary ${
-                                                                              formErrors.subject
-                                                                              ? "border-red-500 focus:ring-red-500"
-                                                                              : "border-border"
-                                                                        }`}
-                                                                        aria-invalid={!!formErrors.subject}
-                                                                        aria-describedby={formErrors.subject ? "subject-error" : undefined}
+                                                                        aria-describedby={
+                                                                              formErrors.email
+                                                                                    ? "email-error"
+                                                                                    : undefined
+                                                                        }
                                                                   />
-                                                                  {formErrors.subject && (
-                                                                        <p id="subject-error" className="mt-1 text-sm text-red-500 flex items-center">
-                                                                              <AlertCircle size={14} className="mr-1" />
-                                                                              {formErrors.subject}
+                                                                  {formErrors.email && (
+                                                                        <p
+                                                                              id="email-error"
+                                                                              className="mt-1 text-sm text-red-500 flex items-center gap-1"
+                                                                        >
+                                                                              <AlertCircle
+                                                                                    size={
+                                                                                          14
+                                                                                    }
+                                                                              />
+                                                                              {
+                                                                                    formErrors.email
+                                                                              }
                                                                         </p>
                                                                   )}
                                                             </div>
 
-                                                      <div>
-                                                            <label
-                                                                  htmlFor="message"
-                                                                  className="block mb-2 text-sm font-medium"
-                                                            >
-                                                                  Your Message
-                                                            </label>
-                                                            <textarea
-                                                                  id="message"
-                                                                  name="message"
-                                                                  value={
-                                                                        formData.message
-                                                                  }
-                                                                  onChange={
-                                                                        handleChange
-                                                                  }
-                                                                  required
-                                                                  rows={5}
-                                                                  className="w-full p-3 bg-accent/[0.03] border border-border rounded-lg focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all resize-none"
-                                                                  placeholder="Tell us more about your inquiry..."
-                                                            ></textarea>
-                                                      </div>
-
-                                                      <button
-                                                            type="submit"
-                                                            disabled={
-                                                                  isSubmitting
-                                                            }
-                                                            className={`w-full p-3 bg-primary text-primary-foreground font-medium rounded-lg transition-all relative ${
-                                                                  isSubmitting
-                                                                        ? "opacity-90 cursor-not-allowed pl-10"
-                                                                        : "hover:bg-primary/90 hover:shadow-lg"
-                                                            }`}
-                                                      >
-                                                            {isSubmitting && (
-                                                                  <span className="absolute left-4 top-1/2 transform -translate-y-1/2">
-                                                                        <LoadingSpinner
-                                                                              size="xs"
-                                                                              color="white"
+                                                            <div>
+                                                                  <div className="mb-0">
+                                                                        <label
+                                                                              htmlFor="subject"
+                                                                              className="block text-sm font-medium mb-1"
+                                                                        >
+                                                                              Subject{" "}
+                                                                              <span className="text-red-500">
+                                                                                    *
+                                                                              </span>
+                                                                        </label>
+                                                                        <input
+                                                                              type="text"
+                                                                              id="subject"
+                                                                              name="subject"
+                                                                              value={
+                                                                                    formData.subject
+                                                                              }
+                                                                              onChange={
+                                                                                    handleChange
+                                                                              }
+                                                                              className={`w-full p-3 border rounded-md bg-background focus:outline-none focus:ring-1 focus:ring-primary ${
+                                                                                    formErrors.subject
+                                                                                          ? "border-red-500 focus:ring-red-500"
+                                                                                          : "border-border"
+                                                                              }`}
+                                                                              aria-invalid={
+                                                                                    !!formErrors.subject
+                                                                              }
+                                                                              aria-describedby={
+                                                                                    formErrors.subject
+                                                                                          ? "subject-error"
+                                                                                          : undefined
+                                                                              }
                                                                         />
-                                                                  </span>
-                                                            )}
-                                                            {isSubmitting
-                                                                  ? "Sending..."
-                                                                  : submitSuccess
-                                                                    ? "Message Sent!"
-                                                                    : "Send Message"}
-                                                      </button>
+                                                                        {formErrors.subject && (
+                                                                              <p
+                                                                                    id="subject-error"
+                                                                                    className="mt-1 text-sm text-red-500 flex items-center"
+                                                                              >
+                                                                                    <AlertCircle
+                                                                                          size={
+                                                                                                14
+                                                                                          }
+                                                                                          className="mr-1"
+                                                                                    />
+                                                                                    {
+                                                                                          formErrors.subject
+                                                                                    }
+                                                                              </p>
+                                                                        )}
+                                                                  </div>
+
+                                                                  <div>
+                                                                        <label
+                                                                              htmlFor="message"
+                                                                              className="block text-sm font-medium mb-1 mt-5"
+                                                                        >
+                                                                              Your
+                                                                              Message{" "}
+                                                                              <span className="text-red-500">
+                                                                                    *
+                                                                              </span>
+                                                                        </label>
+                                                                        <textarea
+                                                                              id="message"
+                                                                              name="message"
+                                                                              value={
+                                                                                    formData.message
+                                                                              }
+                                                                              onChange={
+                                                                                    handleChange
+                                                                              }
+                                                                              rows={
+                                                                                    5
+                                                                              }
+                                                                              className={`w-full p-3 bg-background border rounded-md focus:outline-none focus:ring-1 focus:ring-primary ${
+                                                                                    formErrors.message
+                                                                                          ? "border-red-500 focus:ring-red-500"
+                                                                                          : "border-border"
+                                                                              }`}
+                                                                              placeholder="Tell us how we can help..."
+                                                                              disabled={
+                                                                                    isSubmitting
+                                                                              }
+                                                                        ></textarea>
+                                                                        {formErrors.message && (
+                                                                              <p className="mt-1 text-sm text-red-500 flex items-center">
+                                                                                    <AlertCircle
+                                                                                          size={
+                                                                                                14
+                                                                                          }
+                                                                                          className="mr-1"
+                                                                                    />
+                                                                                    {
+                                                                                          formErrors.message
+                                                                                    }
+                                                                              </p>
+                                                                        )}
+                                                                  </div>
+
+                                                                  <div className="mt-6">
+                                                                        {submitSuccess && (
+                                                                              <div className="mb-4 p-3 bg-green-500/10 border border-green-500/30 rounded-md text-green-500">
+                                                                                    Your
+                                                                                    message
+                                                                                    has
+                                                                                    been
+                                                                                    sent
+                                                                                    successfully!
+                                                                                    We'll
+                                                                                    get
+                                                                                    back
+                                                                                    to
+                                                                                    you
+                                                                                    soon.
+                                                                              </div>
+                                                                        )}
+                                                                        <button
+                                                                              type="submit"
+                                                                              disabled={
+                                                                                    isSubmitting
+                                                                              }
+                                                                              className={`w-full p-3 bg-primary text-primary-foreground font-medium rounded-lg transition-all relative ${
+                                                                                    isSubmitting
+                                                                                          ? "opacity-90 cursor-not-allowed pl-10"
+                                                                                          : "hover:bg-primary/90 hover:shadow-lg"
+                                                                              }`}
+                                                                        >
+                                                                              {isSubmitting && (
+                                                                                    <span className="absolute left-4 top-1/2 transform -translate-y-1/2">
+                                                                                          <LoadingSpinner
+                                                                                                size="xs"
+                                                                                                color="white"
+                                                                                          />
+                                                                                    </span>
+                                                                              )}
+                                                                              {isSubmitting
+                                                                                    ? "Sending..."
+                                                                                    : submitSuccess
+                                                                                      ? "Message Sent!"
+                                                                                      : "Send Message"}
+                                                                        </button>
+                                                                  </div>
+                                                            </div>
+                                                      </div>
                                                 </form>
                                           </div>
                                     </div>
@@ -464,8 +570,7 @@ export default function ContactPage() {
                                                             placeholder
                                                       </p>
                                                       <p className="text-xs text-muted-foreground mt-1">
-                                                            Jl. Prawirotaman No.
-                                                            12, Yogyakarta,
+                                                            Yogyakarta,
                                                             Indonesia
                                                       </p>
                                                 </div>
