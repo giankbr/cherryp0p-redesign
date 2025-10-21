@@ -61,7 +61,7 @@ export function Header({
             <header
                   className={`sticky top-0 z-50 border-b border-border transition-all duration-300 ${scrolled ? "bg-background/95 backdrop-blur-sm shadow-sm" : "bg-background"}`}
             >
-                  <div className="container mx-auto px-4 py-4">
+                  <div className="container mx-auto px-4 py-4 max-w-7xl">
                         <div className="flex items-center justify-between">
                               <Link href="/" className="flex items-center z-50">
                                     <Image
