@@ -19,7 +19,7 @@ export default function AboutPage() {
                         {/* Hero Section - Enhanced */}
                         <FadeIn>
                               <section className="pt-16 pb-8 md:pt-24 md:pb-12">
-                                    <div className="container px-4 mx-auto max-w-5xl">
+                                    <div className="container px-4 mx-auto max-w-7xl">
                                           <h1 className="text-5xl md:text-7xl font-normal mb-6 tracking-tight">
                                                 MEET CHERRYPOP
                                           </h1>
@@ -42,7 +42,7 @@ export default function AboutPage() {
                         {/* Team Image - Enhanced with Animation */}
                         <ScaleIn delay={0.2}>
                               <section className="py-6 md:py-8">
-                                    <div className="container px-4 mx-auto max-w-5xl">
+                                    <div className="container px-4 mx-auto max-w-7xl">
                                           <div className="aspect-video relative rounded-lg overflow-hidden border border-border/50 shadow-lg">
                                                 <Image
                                                       src="/placeholder.svg?height=900&width=2100"
@@ -58,7 +58,7 @@ export default function AboutPage() {
 
                         {/* Vision & Mission - Linear Flow with Animations */}
                         <section className="py-10 md:py-16">
-                              <div className="container px-4 mx-auto max-w-5xl">
+                              <div className="container px-4 mx-auto max-w-7xl">
                                     <div className="space-y-12">
                                           {/* Main Statement */}
                                           <FadeIn delay={0.3} direction="up">
@@ -239,7 +239,7 @@ export default function AboutPage() {
                         {/* Stats - Enhanced with Animations */}
                         <FadeIn>
                               <section className="py-12 bg-accent/[0.05]">
-                                    <div className="container px-4 mx-auto max-w-5xl">
+                                    <div className="container px-4 mx-auto max-w-7xl">
                                           <h2 className="text-3xl font-medium mb-8 text-center">
                                                 Our Impact
                                           </h2>
@@ -288,7 +288,7 @@ export default function AboutPage() {
                         {/* Philosophy Section - Enhanced */}
                         <ScaleIn delay={0.3}>
                               <section className="py-12 pb-20">
-                                    <div className="container px-4 mx-auto max-w-5xl">
+                                    <div className="container px-4 mx-auto max-w-7xl">
                                           <div className="bg-primary/5 rounded-lg p-8 md:p-10 border border-primary/20 shadow-sm">
                                                 <h2 className="text-3xl md:text-4xl font-normal mb-6">
                                                       Design as a Way of Life

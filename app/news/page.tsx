@@ -126,7 +126,7 @@ export default function NewsPage() {
                   <main className="flex-1">
                         {/* Hero Section - Compact */}
                         <section className="pt-20 pb-10">
-                              <div className="container mx-auto px-4 max-w-5xl">
+                              <div className="container mx-auto px-4 max-w-7xl">
                                     <h1 className="text-5xl md:text-7xl font-bold mb-4 tracking-tight">
                                           NEWS &{" "}
                                           <span className="text-primary">
@@ -143,7 +143,7 @@ export default function NewsPage() {
 
                         {/* Search Bar - Compact */}
                         <section className="py-8 bg-accent/[0.03]">
-                              <div className="container mx-auto px-4 max-w-5xl">
+                              <div className="container mx-auto px-4 max-w-7xl">
                                     <div className="relative">
                                           <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                                           <input
@@ -163,7 +163,7 @@ export default function NewsPage() {
 
                         {/* Featured Article - Compact Hero */}
                         <section className="py-10">
-                              <div className="container mx-auto px-4 max-w-5xl">
+                              <div className="container mx-auto px-4 max-w-7xl">
                                     <div className="mb-6">
                                           <h2 className="text-2xl font-bold mb-1">
                                                 Featured Story
@@ -239,7 +239,7 @@ export default function NewsPage() {
 
                         {/* Category Filter - Compact Tabs */}
                         <section className="py-8">
-                              <div className="container mx-auto px-4 max-w-5xl">
+                              <div className="container mx-auto px-4 max-w-7xl">
                                     <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
                                           {categories.map((category) => (
                                                 <button
@@ -265,7 +265,7 @@ export default function NewsPage() {
 
                         {/* Articles Grid - Compact Cards */}
                         <section className="py-8 pb-16">
-                              <div className="container mx-auto px-4 max-w-5xl">
+                              <div className="container mx-auto px-4 max-w-7xl">
                                     <div className="mb-6">
                                           <h2 className="text-2xl font-bold">
                                                 {categories.find(

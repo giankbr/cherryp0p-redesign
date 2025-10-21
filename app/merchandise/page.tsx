@@ -129,7 +129,7 @@ export default function MerchandisePage() {
                   <main className="flex-1">
                         {/* Hero Section - Compact */}
                         <section className="pt-20 pb-10">
-                              <div className="container mx-auto px-4 max-w-5xl">
+                              <div className="container mx-auto px-4 max-w-7xl">
                                     <h1 className="text-5xl md:text-7xl font-bold mb-4 tracking-tight">
                                           MERCH
                                           <span className="text-primary">
@@ -146,7 +146,7 @@ export default function MerchandisePage() {
 
                         {/* Featured Products - Compact Hero Cards */}
                         <section className="py-8 bg-accent/[0.03]">
-                              <div className="container mx-auto px-4 max-w-5xl">
+                              <div className="container mx-auto px-4 max-w-7xl">
                                     <div className="mb-6">
                                           <h2 className="text-2xl font-bold mb-1">
                                                 Featured Products
@@ -225,7 +225,7 @@ export default function MerchandisePage() {
 
                         {/* Category Filter - Compact Tabs */}
                         <section className="py-8">
-                              <div className="container mx-auto px-4 max-w-5xl">
+                              <div className="container mx-auto px-4 max-w-7xl">
                                     <div className="inline-flex rounded-lg border border-border p-1 bg-accent/[0.03]">
                                           {categories.map((category) => {
                                                 const Icon = category.icon;
@@ -259,7 +259,7 @@ export default function MerchandisePage() {
 
                         {/* Products Grid - Compact */}
                         <section className="py-8 pb-16">
-                              <div className="container mx-auto px-4 max-w-5xl">
+                              <div className="container mx-auto px-4 max-w-7xl">
                                     <div className="mb-6">
                                           <h2 className="text-2xl font-bold">
                                                 {categories.find(
@@ -324,7 +324,7 @@ export default function MerchandisePage() {
 
                         {/* Info Banner - Compact */}
                         <section className="py-10 bg-accent/[0.03]">
-                              <div className="container mx-auto px-4 max-w-5xl">
+                              <div className="container mx-auto px-4 max-w-7xl">
                                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                                           <div className="text-center">
                                                 <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-3">

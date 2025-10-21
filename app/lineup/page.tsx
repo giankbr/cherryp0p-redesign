@@ -165,7 +165,7 @@ export default function LineupPage() {
                   <main className="flex-1">
                         {/* Hero Section - Compact */}
                         <section className="pt-20 pb-10">
-                              <div className="container mx-auto px-4 max-w-5xl">
+                              <div className="container mx-auto px-4 max-w-7xl">
                                     <h1 className="lineup-title text-5xl md:text-7xl font-bold mb-4 tracking-tight">
                                           LINE
                                           <span className="text-primary">
@@ -181,7 +181,7 @@ export default function LineupPage() {
 
                         {/* Stage Info Banner - Compact */}
                         <section className="py-8 bg-accent/[0.03]">
-                              <div className="container mx-auto px-4 max-w-5xl">
+                              <div className="container mx-auto px-4 max-w-7xl">
                                     <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 p-6 border border-border/50 rounded-lg bg-background/50">
                                           <div>
                                                 <h2 className="text-2xl font-bold mb-1">
@@ -217,7 +217,7 @@ export default function LineupPage() {
 
                         {/* Day Selector - Compact Tabs */}
                         <section className="py-8">
-                              <div className="container mx-auto px-4 max-w-5xl">
+                              <div className="container mx-auto px-4 max-w-7xl">
                                     <div className="inline-flex rounded-lg border border-border p-1 bg-accent/[0.03]">
                                           {days.map((day, index) => (
                                                 <button
@@ -248,7 +248,7 @@ export default function LineupPage() {
 
                         {/* Artist Lineup - Linear Cards */}
                         <section className="py-8 pb-12">
-                              <div className="container mx-auto px-4 max-w-5xl">
+                              <div className="container mx-auto px-4 max-w-7xl">
                                     <div className="mb-6">
                                           <h2 className="text-3xl font-bold mb-1">
                                                 {days[selectedDay].day}
@@ -342,7 +342,7 @@ export default function LineupPage() {
 
                         {/* Important Information - Compact */}
                         <section className="py-10 pb-16 bg-accent/[0.03]">
-                              <div className="container mx-auto px-4 max-w-5xl">
+                              <div className="container mx-auto px-4 max-w-7xl">
                                     <div className="bg-background/50 border border-border/50 rounded-lg p-8">
                                           <h3 className="text-2xl font-bold mb-6">
                                                 Important Information

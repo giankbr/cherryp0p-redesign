@@ -86,7 +86,7 @@ export default function ContactPage() {
                   <main className="flex-1">
                         {/* Hero Section - Compact */}
                         <section className="pt-20 pb-10">
-                              <div className="container mx-auto px-4 max-w-5xl">
+                              <div className="container mx-auto px-4 max-w-7xl">
                                     <h1 className="text-5xl md:text-7xl font-bold mb-4 tracking-tight">
                                           CONTACT{" "}
                                           <span className="text-primary">
@@ -103,7 +103,7 @@ export default function ContactPage() {
 
                         {/* Contact Info Cards - Compact Inline */}
                         <section className="py-8 bg-accent/[0.03]">
-                              <div className="container mx-auto px-4 max-w-5xl">
+                              <div className="container mx-auto px-4 max-w-7xl">
                                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                                           <div className="flex items-start gap-3 p-5 border border-border/50 rounded-lg bg-background/50 hover:border-primary/50 transition-colors">
                                                 <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
@@ -159,7 +159,7 @@ export default function ContactPage() {
 
                         {/* Contact Form & Social - Linear Layout */}
                         <section className="py-12">
-                              <div className="container mx-auto px-4 max-w-5xl">
+                              <div className="container mx-auto px-4 max-w-7xl">
                                     <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
                                           {/* Left Sidebar */}
                                           <div className="lg:col-span-2 space-y-8">
@@ -391,7 +391,7 @@ export default function ContactPage() {
 
                         {/* Map Section - Compact */}
                         <section className="py-8 bg-accent/[0.03]">
-                              <div className="container mx-auto px-4 max-w-5xl">
+                              <div className="container mx-auto px-4 max-w-7xl">
                                     <div className="border border-border/50 rounded-lg overflow-hidden">
                                           <div className="aspect-[21/9] bg-accent/10 flex items-center justify-center">
                                                 <div className="text-center">
@@ -413,7 +413,7 @@ export default function ContactPage() {
 
                         {/* FAQ - Compact Accordion Style */}
                         <section className="py-12 pb-16">
-                              <div className="container mx-auto px-4 max-w-5xl">
+                              <div className="container mx-auto px-4 max-w-7xl">
                                     <div className="mb-8">
                                           <h2 className="text-3xl font-bold mb-2">
                                                 Frequently Asked Questions
