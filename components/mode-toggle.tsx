@@ -1,32 +1,62 @@
-'use client';
+"use client";
 
-import { Moon, Sun } from 'lucide-react';
-import { useTheme } from 'next-themes';
-
-import { Button } from '@/components/ui/button';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { Moon, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 interface ModeToggleProps {
-  className?: string;
+      className?: string;
 }
 
 export function ModeToggle({ className }: ModeToggleProps) {
-  const { setTheme } = useTheme();
+      const { theme, setTheme } = useTheme();
+      const [mounted, setMounted] = useState(false);
 
-  return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="icon" className={className}>
-          <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-          <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-          <span className="sr-only">Toggle theme</span>
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setTheme('light')}>Light</DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme('dark')}>Dark</DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme('system')}>System</DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
-  );
+      useEffect(() => {
+            setMounted(true);
+      }, []);
+
+      const toggleTheme = () => {
+            setTheme(theme === "dark" ? "light" : "dark");
+      };
+
+      if (!mounted) {
+            return (
+                  <button
+                        className={`relative w-12 h-12 flex items-center justify-center rounded-lg border border-border bg-background transition-all ${className || ""}`}
+                        aria-label="Toggle theme"
+                  >
+                        <div className="w-5 h-5 rounded-full bg-muted" />
+                  </button>
+            );
+      }
+
+      return (
+            <button
+                  onClick={toggleTheme}
+                  className={`group relative w-12 h-12 flex items-center justify-center rounded-lg border border-border bg-background hover:border-primary/50 hover:bg-accent/50 transition-all duration-300 ${className || ""}`}
+                  aria-label="Toggle theme"
+            >
+                  {/* Sun Icon */}
+                  <Sun
+                        className={`absolute h-5 w-5 text-amber-500 transition-all duration-500 ease-in-out ${
+                              theme === "dark"
+                                    ? "rotate-90 scale-0 opacity-0"
+                                    : "rotate-0 scale-100 opacity-100"
+                        }`}
+                  />
+
+                  {/* Moon Icon */}
+                  <Moon
+                        className={`absolute h-5 w-5 text-blue-400 transition-all duration-500 ease-in-out ${
+                              theme === "dark"
+                                    ? "rotate-0 scale-100 opacity-100"
+                                    : "-rotate-90 scale-0 opacity-0"
+                        }`}
+                  />
+
+                  {/* Ripple effect on click */}
+                  <span className="absolute inset-0 rounded-lg bg-primary/10 scale-0 group-active:scale-100 opacity-0 group-active:opacity-100 transition-all duration-300" />
+            </button>
+      );
 }
