@@ -16,7 +16,7 @@ import {
       Linkedin,
       Link2,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, use } from "react";
 
 // This would normally come from a CMS or API
 const getArticleData = (slug: string) => {
@@ -149,9 +149,10 @@ const getRelatedArticles = () => {
 export default function NewsDetailPage({
       params,
 }: {
-      params: { slug: string };
+      params: Promise<{ slug: string }>;
 }) {
-      const article = getArticleData(params.slug);
+      const { slug } = use(params);
+      const article = getArticleData(slug);
       const relatedArticles = getRelatedArticles();
       const [copied, setCopied] = useState(false);
 
