@@ -13,10 +13,16 @@ import {
       MapPin,
       Phone,
       Clock,
+      CheckCircle,
+      AlertCircle,
 } from "lucide-react";
 import Link from "next/link";
+import { useToast } from "@/components/ui/toast-provider";
+import { LoadingSpinner } from "@/components/ui/loading-spinner";
+import { SEO } from "@/components/seo";
 
 export default function ContactPage() {
+      const { addToast } = useToast();
       const [formData, setFormData] = useState({
             name: "",
             email: "",
@@ -26,22 +32,65 @@ export default function ContactPage() {
 
       const [isSubmitting, setIsSubmitting] = useState(false);
       const [submitSuccess, setSubmitSuccess] = useState(false);
+      const [formErrors, setFormErrors] = useState<Record<string, string>>({});
 
       const handleChange = (
             e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
       ) => {
             const { name, value } = e.target;
             setFormData((prev) => ({ ...prev, [name]: value }));
+
+            // Reset success state when user starts typing again
+            if (submitSuccess) {
+                  setSubmitSuccess(false);
+            }
+
+            // Clear errors for this field when user types
+            if (formErrors[name]) {
+                  setFormErrors((prev) => {
+                        const updated = { ...prev };
+                        delete updated[name];
+                        return updated;
+                  });
+            }
+      };
+
+      const validateForm = () => {
+            const errors: Record<string, string> = {};
+
+            if (!formData.name.trim()) errors.name = "Name is required";
+            if (!formData.email.trim()) errors.email = "Email is required";
+            else if (!/^\S+@\S+\.\S+$/.test(formData.email))
+                  errors.email = "Please enter a valid email";
+            if (!formData.subject.trim())
+                  errors.subject = "Subject is required";
+            if (!formData.message.trim())
+                  errors.message = "Message is required";
+            else if (formData.message.trim().length < 10)
+                  errors.message = "Message must be at least 10 characters";
+
+            setFormErrors(errors);
+            return Object.keys(errors).length === 0;
       };
 
       const handleSubmit = (e: React.FormEvent) => {
             e.preventDefault();
+
+            if (!validateForm()) {
+                  addToast("Please fix the errors in the form", "error");
+                  return;
+            }
+
             setIsSubmitting(true);
 
             // Simulate form submission
             setTimeout(() => {
                   setIsSubmitting(false);
                   setSubmitSuccess(true);
+                  addToast(
+                        "Your message has been sent successfully!",
+                        "success",
+                  );
                   setFormData({
                         name: "",
                         email: "",
@@ -81,6 +130,10 @@ export default function ContactPage() {
 
       return (
             <div className="min-h-screen flex flex-col bg-background">
+                  <SEO
+                        title="Contact Us"
+                        description="Get in touch with the Cherrypop Festival team. Have questions? We're here to help with all your festival inquiries."
+                  />
                   <Header />
                   <Marquee />
                   <main className="flex-1">
@@ -323,27 +376,38 @@ export default function ContactPage() {
                                                       </div>
 
                                                       <div>
-                                                            <label
-                                                                  htmlFor="subject"
-                                                                  className="block mb-2 text-sm font-medium"
-                                                            >
-                                                                  Subject
-                                                            </label>
-                                                            <input
-                                                                  type="text"
-                                                                  id="subject"
-                                                                  name="subject"
-                                                                  value={
-                                                                        formData.subject
-                                                                  }
-                                                                  onChange={
-                                                                        handleChange
-                                                                  }
-                                                                  required
-                                                                  className="w-full p-3 bg-accent/[0.03] border border-border rounded-lg focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
-                                                                  placeholder="How can we help you?"
-                                                            />
-                                                      </div>
+                                                            <div className="mb-4">
+                                                                  <label
+                                                                        htmlFor="subject"
+                                                                        className="block text-sm font-medium mb-1"
+                                                                  >
+                                                                        Subject <span className="text-red-500">*</span>
+                                                                  </label>
+                                                                  <input
+                                                                        type="text"
+                                                                        id="subject"
+                                                                        name="subject"
+                                                                        value={
+                                                                              formData.subject
+                                                                        }
+                                                                        onChange={
+                                                                              handleChange
+                                                                        }
+                                                                        className={`w-full p-3 border rounded-md bg-background focus:outline-none focus:ring-1 focus:ring-primary ${
+                                                                              formErrors.subject
+                                                                              ? "border-red-500 focus:ring-red-500"
+                                                                              : "border-border"
+                                                                        }`}
+                                                                        aria-invalid={!!formErrors.subject}
+                                                                        aria-describedby={formErrors.subject ? "subject-error" : undefined}
+                                                                  />
+                                                                  {formErrors.subject && (
+                                                                        <p id="subject-error" className="mt-1 text-sm text-red-500 flex items-center">
+                                                                              <AlertCircle size={14} className="mr-1" />
+                                                                              {formErrors.subject}
+                                                                        </p>
+                                                                  )}
+                                                            </div>
 
                                                       <div>
                                                             <label
@@ -373,15 +437,25 @@ export default function ContactPage() {
                                                             disabled={
                                                                   isSubmitting
                                                             }
-                                                            className={`w-full p-3 bg-primary text-primary-foreground font-medium rounded-lg transition-all ${
+                                                            className={`w-full p-3 bg-primary text-primary-foreground font-medium rounded-lg transition-all relative ${
                                                                   isSubmitting
-                                                                        ? "opacity-70 cursor-not-allowed"
+                                                                        ? "opacity-90 cursor-not-allowed pl-10"
                                                                         : "hover:bg-primary/90 hover:shadow-lg"
                                                             }`}
                                                       >
+                                                            {isSubmitting && (
+                                                                  <span className="absolute left-4 top-1/2 transform -translate-y-1/2">
+                                                                        <LoadingSpinner
+                                                                              size="xs"
+                                                                              color="white"
+                                                                        />
+                                                                  </span>
+                                                            )}
                                                             {isSubmitting
                                                                   ? "Sending..."
-                                                                  : "Send Message"}
+                                                                  : submitSuccess
+                                                                    ? "Message Sent!"
+                                                                    : "Send Message"}
                                                       </button>
                                                 </form>
                                           </div>

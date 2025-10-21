@@ -5,6 +5,8 @@ import { Header } from "@/components/header";
 import { FadeIn, ScaleIn, StaggerFade } from "@/components/ui/animation";
 import Image from "next/image";
 import { useEffect } from "react";
+import { SEO } from "@/components/seo";
+import { BlurImage } from "@/components/ui/blur-image";
 
 export default function AboutPage() {
       // Add page transition on mount
@@ -14,6 +16,11 @@ export default function AboutPage() {
 
       return (
             <div className="min-h-screen flex flex-col bg-background">
+                  <SEO
+                        title="About Us"
+                        description="Learn about CherryPop Festival, our vision, mission and the team behind Indonesia's most innovative music festival in Yogyakarta."
+                        ogType="website"
+                  />
                   <Header />
                   <main className="flex-1">
                         {/* Hero Section - Enhanced */}
@@ -49,7 +56,9 @@ export default function AboutPage() {
                                                       alt="Cherrypop Festival Team"
                                                       fill
                                                       className="object-cover"
+                                                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1280px"
                                                       priority
+                                                      quality={90}
                                                 />
                                           </div>
                                     </div>
@@ -237,7 +246,7 @@ export default function AboutPage() {
                         </section>
 
                         {/* Stats - Enhanced with Animations */}
-                        <FadeIn>
+                        <FadeIn delay={0.1} threshold={0.2}>
                               <section className="py-12 bg-accent/[0.05]">
                                     <div className="container px-4 mx-auto max-w-7xl">
                                           <h2 className="text-3xl font-medium mb-8 text-center">
@@ -286,7 +295,7 @@ export default function AboutPage() {
                         </FadeIn>
 
                         {/* Philosophy Section - Enhanced */}
-                        <ScaleIn delay={0.3}>
+                        <ScaleIn delay={0.2} threshold={0.1}>
                               <section className="py-12 pb-20">
                                     <div className="container px-4 mx-auto max-w-7xl">
                                           <div className="bg-primary/5 rounded-lg p-8 md:p-10 border border-primary/20 shadow-sm">
@@ -352,8 +361,133 @@ export default function AboutPage() {
                                     </div>
                               </section>
                         </ScaleIn>
+
+                        {/* Team Section - New */}
+                        <section className="py-16 pb-24 overflow-hidden">
+                              <div className="container px-4 mx-auto max-w-7xl">
+                                    <FadeIn>
+                                          <h2 className="text-3xl md:text-4xl font-normal mb-4 tracking-tight text-center">
+                                                Meet Our Team
+                                          </h2>
+                                          <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
+                                                The creative minds behind
+                                                Cherrypop Festival, working
+                                                together to create unforgettable
+                                                music experiences in Yogyakarta.
+                                          </p>
+                                    </FadeIn>
+
+                                    <StaggerFade
+                                          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8"
+                                          delay={0.1}
+                                          staggerDelay={0.1}
+                                    >
+                                          {[
+                                                {
+                                                      name: "Aditya Pratama",
+                                                      role: "Festival Director",
+                                                      img: "/placeholder.svg?height=500&width=400&text=Aditya",
+                                                },
+                                                {
+                                                      name: "Rini Wijaya",
+                                                      role: "Creative Director",
+                                                      img: "/placeholder.svg?height=500&width=400&text=Rini",
+                                                },
+                                                {
+                                                      name: "Budi Santoso",
+                                                      role: "Technical Producer",
+                                                      img: "/placeholder.svg?height=500&width=400&text=Budi",
+                                                },
+                                                {
+                                                      name: "Maya Anggraini",
+                                                      role: "Artist Relations",
+                                                      img: "/placeholder.svg?height=500&width=400&text=Maya",
+                                                },
+                                          ].map((member, index) => (
+                                                <div
+                                                      key={index}
+                                                      className="group"
+                                                >
+                                                      <div className="aspect-[4/5] relative rounded-lg overflow-hidden border border-border/50 mb-3 bg-accent/5">
+                                                            <Image
+                                                                  src={
+                                                                        member.img
+                                                                  }
+                                                                  alt={
+                                                                        member.name
+                                                                  }
+                                                                  fill
+                                                                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                                                                  sizes="(max-width: 768px) 50vw, 25vw"
+                                                                  loading={
+                                                                        index <
+                                                                        2
+                                                                              ? "eager"
+                                                                              : "lazy"
+                                                                  }
+                                                                  quality={90}
+                                                            />
+                                                            <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                                            <div className="absolute bottom-0 left-0 p-3 opacity-0 group-hover:opacity-100 transform translate-y-3 group-hover:translate-y-0 transition-all duration-300">
+                                                                  <div className="flex space-x-2">
+                                                                        <a
+                                                                              href="#"
+                                                                              className="w-8 h-8 rounded-full bg-background/80 flex items-center justify-center hover:bg-primary/20 transition-colors"
+                                                                        >
+                                                                              <svg
+                                                                                    className="w-4 h-4"
+                                                                                    fill="currentColor"
+                                                                                    viewBox="0 0 24 24"
+                                                                                    aria-hidden="true"
+                                                                              >
+                                                                                    <path d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63z"></path>
+                                                                                    <path d="M12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666z"></path>
+                                                                              </svg>
+                                                                        </a>
+                                                                        <a
+                                                                              href="#"
+                                                                              className="w-8 h-8 rounded-full bg-background/80 flex items-center justify-center hover:bg-primary/20 transition-colors"
+                                                                        >
+                                                                              <svg
+                                                                                    className="w-4 h-4"
+                                                                                    fill="currentColor"
+                                                                                    viewBox="0 0 24 24"
+                                                                                    aria-hidden="true"
+                                                                              >
+                                                                                    <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
+                                                                              </svg>
+                                                                        </a>
+                                                                  </div>
+                                                            </div>
+                                                      </div>
+                                                      <h3 className="text-lg font-medium">
+                                                            {member.name}
+                                                      </h3>
+                                                      <p className="text-sm text-muted-foreground">
+                                                            {member.role}
+                                                      </p>
+                                                </div>
+                                          ))}
+                                    </StaggerFade>
+                              </div>
+                        </section>
                   </main>
                   <Footer />
             </div>
       );
 }
+
+// Generate static metadata for SEO
+export const generateMetadata = () => {
+      return {
+            title: "Meet Our Team | Cherrypop Festival",
+            description:
+                  "The creative minds behind Cherrypop Festival, Indonesia's innovative music celebration showcasing youth subcultures in Yogyakarta.",
+            openGraph: {
+                  title: "About Cherrypop Festival",
+                  description:
+                        "Learn about our vision, mission and the team that makes Cherrypop Festival happen.",
+                  images: ["/og-images/about-page.jpg"],
+            },
+      };
+};
