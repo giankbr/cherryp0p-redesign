@@ -5,22 +5,14 @@ import { Header } from "@/components/header";
 import { FadeIn, ScaleIn, StaggerFade } from "@/components/ui/animation";
 import Image from "next/image";
 import { useEffect } from "react";
-import { SEO } from "@/components/seo";
-import { BlurImage } from "@/components/ui/blur-image";
 
 export default function AboutPage() {
       // Add page transition on mount
       useEffect(() => {
             window.scrollTo(0, 0);
       }, []);
-
       return (
             <div className="min-h-screen flex flex-col bg-background">
-                  <SEO
-                        title="About Us"
-                        description="Learn about CherryPop Festival, our vision, mission and the team behind Indonesia's most innovative music festival in Yogyakarta."
-                        ogType="website"
-                  />
                   <Header />
                   <main className="flex-1">
                         {/* Hero Section - Enhanced */}
@@ -476,18 +468,3 @@ export default function AboutPage() {
             </div>
       );
 }
-
-// Generate static metadata for SEO
-export const generateMetadata = () => {
-      return {
-            title: "Meet Our Team | Cherrypop Festival",
-            description:
-                  "The creative minds behind Cherrypop Festival, Indonesia's innovative music celebration showcasing youth subcultures in Yogyakarta.",
-            openGraph: {
-                  title: "About Cherrypop Festival",
-                  description:
-                        "Learn about our vision, mission and the team that makes Cherrypop Festival happen.",
-                  images: ["/og-images/about-page.jpg"],
-            },
-      };
-};
